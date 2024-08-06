@@ -98,7 +98,7 @@ namespace Ancient_costume.Controllers
         {
 
             Uri endpoint = new Uri("https://aiinstace99.openai.azure.com/");
-            AzureKeyCredential credential = new AzureKeyCredential("94d4ae7ba8404f04872d8f6b42848277");
+            AzureKeyCredential credential = new AzureKeyCredential("資安原因隱藏金鑰");
 
             var openAIClient = new OpenAIClient(endpoint, credential);
 
