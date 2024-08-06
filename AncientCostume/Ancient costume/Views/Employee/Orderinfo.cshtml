@@ -1,0 +1,246 @@
+﻿@model List<Ancient_costume.Models.Order>
+
+
+@{
+    ViewBag.Title = "Orderinfo";
+}
+
+@section MyCss{
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            font-size: 20px;
+            font-weight: 300;
+        }
+    </style>
+
+    <link href="/Scripts/sweetalert2.min.css" rel="stylesheet" />
+    <script src="/Scripts/sweetalert2.min.js"></script>
+    <script src="/Scripts/Chart.js"></script>
+    <script src="/Scripts/utils.js"></script>
+}
+
+<div class="container">
+    <h2>會員訂單明細</h2>
+    @*用accordion修改檢視資料*@
+    <div class="accordion" id="accordionExample">
+
+        @foreach (var item in Model)
+        {
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="heading-@item.Id">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-@item.Id" aria-expanded="true" aria-controls="collapse-@item.Id">
+                        會員ID:@item.MemberID 顧客姓名:@item.Customersname 訂單編號:@item.Id
+                    </button>
+                </h2>
+                @*使用collapse-@item.Id將確保只允許一個項目同時打開，當用戶打開一個新項目時，其他打開的項目會自動關閉*@
+                <div id="collapse-@item.Id" class="accordion-collapse collapse" aria-labelledby="heading-@item.Id" data-bs-parent="#accordionExample">
+                    <div class="accordion-body text-center">
+                        <div class="card">
+                            <div class="card-header">行程內容</div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        行程編號:@item.JourneyId
+                                    </div>
+                                    <div class="col-md-2">
+                                        行程編號:行程名稱:@item.JourneyName
+                                    </div>
+                                    <div class="col-md-2">
+                                        行程內容:@item.JourneyContent
+                                    </div>
+                                    <div class="col-md-2">
+                                        景點:@item.Sights
+                                    </div>
+                                    <div class="col-md-2">
+                                        住宿:@item.Stay
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="card">
+                            <div class="card-header">行程費用</div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        行程費用項目:
+                                        <br />
+                                        @item.ExpenseItems
+                                    </div>
+                                    <div class="col-md-2">
+                                        化妝費用:@item.MakeUpExpenses
+                                    </div>
+                                    <div class="col-md-2">
+                                        拍照攝影費用:@item.Photo
+                                    </div>
+                                    <div class="col-md-2">
+                                        交通費用:@item.Transportation
+                                    </div>
+                                    <div class="col-md-2">
+                                        車資費用:@item.CarFare
+                                    </div>
+                                    <div class="col-md-2">
+                                        住宿費用:@item.StayExpenses
+                                    </div>
+                                    <div class="col-md-2">
+                                        活動費用:@item.Activity
+                                    </div>
+                                    <div class="col-md-2">
+                                        食物費用:@item.Food
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="card">
+                            <div class="card-header">行程提醒</div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        集合地點:@item.AssemblyPlace
+                                    </div>
+                                    <div class="col-md-6">
+                                        每日行程:@item.DailyItinerary
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <div class="card">
+                            <div class="card-header">古裝選擇</div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4 text-center">
+                                        <label for="costume">所選古裝</label>
+                                        <img id="costume" width="300" height="300" src="@Url.Content("~/source/costume/" + @item.custom + ".jpg")">
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                        <label for="makeup">所選妝容</label>
+                                        <img id="makeup" width="300" height="300" src="@Url.Content("~/source/makeup/" + @item.makeup + ".jpg")">
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                        <label for="hair">所選髮型</label>
+                                        <img id="hair" width="300" height="300" src="@Url.Content("~/source/hair/" + @item.hair + ".jpg")">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        @Html.ActionLink("刪除行程", "Deleteorder", new { id = item.Id }, new { @class = "btn btn-primary" })
+                    </div>
+                </div>
+            </div>
+        }
+
+        
+
+    </div>
+
+    <br />
+
+    <!--所有訂單明細-->
+    @*預計設計填寫欄位篩選會員資料-使用時間*@
+    @*延伸月報表圖表*@
+    <h2>查詢會員訂單</h2>
+    <form action="/Employee/Checkingorder" method="post">
+
+        <div class="row">
+            <div class="col-md-1">
+                <label for="textorder">輸入會員ID:</label>
+                <input type="text" name="textorder" id="textorder" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <label for="texttime">開始日期:</label>
+                <input type="date" name="startDate" id="startDate" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <label for="texttime">結束日期:</label>
+                <input type="date" name="endDate" id="endDate" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <br />
+                <button type="submit" class="btn btn-primary" id="Button1">查詢</button>
+                @Html.ActionLink("回總訂單", "Orderinfo", null, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </form>
+
+    <br />
+
+    <h2>旅程排行榜</h2>
+
+    <div>
+        <div style="width: 70%;">
+            <canvas id="myChart"></canvas>
+        </div>
+
+
+        <input type="hidden" id="HiddenField1" value="@ViewBag.xAry" />
+        <input type="hidden" id="HiddenField2" value="@ViewBag.yAry" />
+    </div>
+
+</div>
+
+@section MyJs{
+    <script>
+        $(function () {
+
+            $("#Button1").click(function () {
+                swal({
+                    title: '完成',
+                    text: "檔案查詢成功!",
+                    type: 'success',
+                });
+            });
+        })
+
+        var ctx = document.getElementById("myChart")
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: document.getElementById("HiddenField1").value.split(","),
+                datasets: [{
+                    label: '旅程數量',
+                    data: document.getElementById("HiddenField2").value.split(","),
+                    borderWidth: 1,
+                    backgroundColor: GetColors(7),
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        })
+
+        window.GetColors = function (number) {
+            var ary = new Array();
+            for (var i = 0; i < number; i++) {
+                ary.push(window.chartColorAry[i])
+            }
+        }
+
+        window.chartColorsAry = [
+            chartColors.red,
+            chartColors.orange,
+            chartColors.yellow,
+            chartColors.green,
+            chartColors.blue,
+            chartColors.purple,
+            chartColors.grey,
+            chartColors.black
+        ]
+    </script>
+}
+

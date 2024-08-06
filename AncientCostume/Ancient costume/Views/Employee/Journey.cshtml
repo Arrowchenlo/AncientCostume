@@ -1,0 +1,580 @@
+﻿@model Ancient_costume.Models.Journey
+
+
+@{
+    ViewBag.Title = "Journey";
+}
+
+@section MyCss{
+    <style>
+        .btn-with-img {
+            display: inline-block; /* 讓按鈕以行內塊元素顯示 */
+            text-align: center; /* 文字置中 */
+            font-size: 16px; /* 設定文字大小 */
+            margin: 10px; /* 設定外邊距 */
+        }
+
+        .btn-with-img img {
+            display: block; /* 圖片獨占一行 */
+            margin: 0 auto; /* 圖片水平置中 */
+            width: 200px; /* 設定圖片寬度 */
+        }
+    </style>
+}
+
+<!-- Explore Tour Start -->
+<div class="container-fluid ExploreTour py-5">
+    <div class="container py-5">
+        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+            <h1 class="section-title px-3">旅遊特色</h1>
+            <h5 class="mb-4">Explore Tour</h5>
+
+            @*預計加上日歷選擇/切換列表*@
+
+            @Model.JourneyName<br>
+            @Model.JourneyContent<br>
+
+            <div class="button-group">
+                <button onclick="showCalendar()">顯示月曆</button>
+                <button onclick="showList()">顯示列表</button>
+            </div>
+
+            <div id="calendarView" class="view active">
+                <img src="" alt="月曆視圖">
+            </div>
+
+            <div id="listView" class="view">
+                <img src="" alt="列表視圖">
+            </div>
+
+            <br>
+
+            <h1 class="section-title px-3">推薦景點</h1>
+            <h5 class="mb-4">Sights</h5>
+            @Model.Sights<br>
+            @*gridview排版*@
+
+            <!--Columns排版-->
+            <div id="EmployeeColumns" class="row">
+                @*預計foreach*@
+                @*預計使用db關聯傳送圖片sights*@
+                <div class="card ">
+                    @*<img class="card-img-top" src="@Url.Content("~/Images/" + item.ProductID + ".jpg")" />*@
+                    <img class="card-img-top" src="~/source/sights/@Model.Sights_img1" />
+
+                    <div class="card-body">
+                        <h5 class="card-title text-center">
+                            @Model.Sights_title
+                            @*登義DengYi 來自一間創立半甲子有餘的中藥行，中藥店。*@
+                        </h5>
+                        <hr />
+                        <p class="card-text">
+                            @Model.Sights_text
+                            @*我們認為唯有透過用心觀察與實作，去了解「漢藥」與「中藥行」在現代人生活的扮演角色，才能持續讓中藥行在當代茁壯與永續，並且走入大眾日常，讓漢藥的美能透過場域的衍繹與中藥行職人的互動，與大家一起實踐漢方生活。
+                        我們憑著搭配過各式香料滷包、以及獨門的漢藥配方，搭配豐富的選材經驗與炮製漢藥材的專業，透過盅湯與滷味，打造充滿漢藥文化的食體驗，讓中藥行走進尋常百姓廚房！
+                        園區位置
+                        文昌街33號
+                        營業時間
+                        0900-1800*@
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card col-md-4">
+                    <img class="card-img-top" src="~/source/sights/@Model.Sights_img2" />
+
+                </div>
+                <div class="card col-md-4">
+                    <img class="card-img-top" src="~/source/sights/@Model.Sights_img3" />
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+            <h1 class="section-title px-3">住宿</h1>
+            <h5 class="mb-4">Stay</h5>
+            @Model.Stay<br>
+
+            <div id="EmployeeColumns" class="row">
+                @*預計foreach*@
+                @*預計使用db關聯傳送圖片sights*@
+                <div class="card ">
+                    @*<img class="card-img-top" src="@Url.Content("~/Images/" + item.ProductID + ".jpg")" />*@
+                    <img class="card-img-top" src="~/source/stay/@Model.Stay_img1" />
+
+                    <div class="card-body">
+                        <h5 class="card-title text-center">
+                            @*夜宿蘭陽藝城 漫遊古味巷陌*@
+                            @*@Model.Journey_Stays.First().StayName*@
+                            @Model.Stay_title
+                        </h5>
+                        <hr />
+                        <p class="card-text">
+                            @*「煙波花時間 – 宜蘭傳藝」坐落於國立傳統藝術中心-宜蘭傳藝園區。以「夜宿蘭陽藝城 漫遊古味巷陌」為概念，讓旅客住得自在、玩得自由、歡聚在傳藝中心，發掘藏在日常裡的文化藝術軌跡，深度感受、傳揚台灣傳統藝術。全區客房建築出自黃聲遠建築師事務所設計，懷舊磨石地、迴廊池塘、涼亭木椅，自由穿梭濃厚閩南式建築中，彷彿穿越到舊時台灣，留下充滿濃厚文化氣息的片刻回憶。
+                        宜蘭縣五結鄉五濱路二段201號
+                        +886-3-9506666  rvta@lakeshore.com.tw*@
+                            @Model.Stay_text
+                        </p>
+                    </div>
+                </div>
+
+                <!--<div class="card col-md-4">-->
+                @*<img class="card-img-top" src="~/source/stay/@Model.Journey_Stays.First().StayImage" />*@
+                <!--</div>-->
+                <div class="card col-md-4">
+                    <img class="card-img-top" src="~/source/stay/@Model.Stay_img2" />
+                </div>
+                <div class="card col-md-4">
+                    <img class="card-img-top" src="~/source/stay/@Model.Stay_img3" />
+                </div>
+                <!--<div class="card col-md-4">-->
+                @*<img class="card-img-top" src="~/source/stay/s1-5.jpg" />*@
+                <!--</div>-->
+            </div>
+
+
+            <h1 class="section-title px-3">費用說明</h1>
+            <h5 class="mb-4">ExpenseItems</h5>
+            @Model.ExpenseItems<br>
+            @*<p>化妝:@Model.Journey_TravelExpenses.First().MakeUp.ToString("0")</p>*@
+            @*小數點要去除*@
+            <p>攝影:@Model.Photo.Value.ToString("0")</p>
+            <p>化妝:@Model.MakeUpExpenses.Value.ToString("0")</p>
+            <p>交通:@Model.Transportation.Value.ToString("0")</p>
+            <p>車資:@Model.CarFare.Value.ToString("0")</p>
+            <p>住宿:@Model.StayExpenses.Value.ToString("0")</p>
+            <p>活動:@Model.Activity.Value.ToString("0")</p>
+            <p>食物:@Model.Food.Value.ToString("0")</p>
+
+            <h1 class="section-title px-3">特別備註</h1>
+            <h5 class="mb-4">Remarks</h5>
+            @Model.Remarks<br>
+            <p>＊本行程1人成行。</p>
+            <p>＊本行程貴賓不須支付小費給導遊或司機。</p>
+            <p>＊本行程無提供巴士選位服務，敬請知悉。</p>
+            <p>＊本行程於指定時間準時出發，逾時不候，若因遲到而無法參團，恕不退費，亦不可改期參團。</p>
+            <p>＊線上預約並非保證訂位成功，需以客服人員回覆為準。</p>
+            <p>＊嬰兒(2歲以下)，僅含保險及作業手續費200元，其餘皆不含。</p>
+
+
+            <h1 class="section-title px-3">集合地點</h1>
+            <h5 class="mb-4">AssemblyPlace</h5>
+            @Model.AssemblyPlace<br>
+            <p>多功能展覽區</p>
+            <img src="~/source/sights/taipeistation.jpg" /><br>
+
+            <h1 class="section-title px-3">每日行程</h1>
+            <h5 class="mb-4">DailyItinerary</h5>
+            @Model.DailyItinerary<br>
+            @*預計設計按鈕折疊行程*@
+            <input type="button" id="complete" name="longname" value="完整行程" class="btn btn-danger" onclick="toggle()" />
+            <input type="button" id="shortening" name="shortname" value="精簡行程" class="btn btn-danger" onclick="toggle2()" />
+
+            <div id="short">
+                <h5>台北車站集合出發 搭乘台鐵列車【台北-宜蘭】=> 12:50 在地風味午餐 => 14:40 宜蘭傳藝園區 =>  16:10 煙波花時間</h5>
+            </div>
+
+            <div id="long" style="display:none">
+                <h5>宜蘭傳藝園區=>煙波花時間</h5>
+            </div>
+
+            <br />
+
+            <input type="button" name="woman" value="古裝選擇-女" class="btn btn-danger" onclick="togglewoman()" />
+            <input type="button" name="man" value="古裝選擇-男" class="btn btn-danger" onclick="toggleman()" />
+
+            <br>
+
+            <div id="woman">
+                <br>
+                <br>
+                <h1 class="section-title px-3">古裝選擇-女</h1>
+                <h5 class="mb-4">Ancientcostume</h5>
+                @*預計按鈕文字顯示在下方*@
+                @*設定選好按鈕帶回旅程費用*@
+
+                <form action="/" method="post"></form>
+
+                <button class="btn-with-img">
+                    <img width="200" src="~/source/costume/costume_woman1.jpg" alt="古裝一" />
+                    古裝一
+                </button>
+
+                <button class="btn-with-img">
+                    <img width="200" src="~/source/costume/costume_woman2.jpg" alt="古裝二" />
+                    古裝二
+                </button>
+
+                <button class="btn-with-img">
+                    <img width="200" src="~/source/costume/costume_woman3.jpg" alt="古裝三" />
+                    古裝三
+                </button>
+
+                <br>
+                <br>
+
+                <h1 class="section-title px-3">妝容選擇-女</h1>
+                <h5 class="mb-4">Ancientcostume-makeup</h5>
+                <br>
+                <button class="btn-with-img">
+                    <img width="200" src="~/source/makeup/makeup_woman1.jpg" alt="妝容一" />
+                    妝容一
+                </button>
+
+                <button class="btn-with-img">
+                    <img width="200" src="~/source/makeup/makeup_woman2.jpg" alt="妝容二" />
+                    妝容二
+                </button>
+
+                <button class="btn-with-img">
+                    <img width="200" src="~/source/makeup/makeup_woman3.jpg" alt="妝容三" />
+                    妝容三
+                </button>
+
+                <br>
+                <br>
+
+                <h1 class="section-title px-3">髮型選擇-女</h1>
+                <h5 class="mb-4">Ancientcostume-hair</h5>
+                <br />
+
+                <button class="btn-with-img">
+                    <img width="200" src="~/source/hair/hair_woman1.jpg" alt="髮型一" />
+                    髮型一
+                </button>
+
+                <button class="btn-with-img">
+                    <img width="200" src="~/source/hair/hair_woman2.jpg" alt="髮型二" />
+                    髮型二
+                </button>
+
+                <button class="btn-with-img">
+                    <img width="200" src="~/source/hair/hair_woman3.jpg" alt="髮型三" />
+                    髮型三
+                </button>
+            </div>
+
+
+            <br>
+            <br>
+            <form action="/Account/Order" method="post">
+                @*用js抓到上面點選的圖片(click事件),寫檔名到下面三個隱藏欄位*@
+                <input type="hidden" name="custom" value="custom_woman1.jpg" />
+                <input type="hidden" name="makeup" value="makeup_woman2.jpg" />
+                <input type="hidden" name="hair" value="hair_woman2.jpg" />
+                @*將Model.Id代入=>/Member/Order*@
+                @*/Employee/Journey/3*@
+                @*用form表單傳送資料妝髮服資料回伺服器存session*@
+                <input type="button" name="name" value="報名行程" class="btn btn-danger btn-lg" onclick="location.href='/Account/Order'/@Model.Id" />
+            </form>
+
+            <div id="man" style="display:none">
+                <h1 class="section-title px-3">古裝選擇-男</h1>
+                <h5 class="mb-4">Ancientcostume</h5>
+
+                <form action="/" method="post"></form>
+
+                <button class="btn-with-img">
+                    <img width="200" src="~/source/costume/costume_man1.jpg" alt="古裝一" />
+                    古裝一
+                </button>
+
+                <button class="btn-with-img">
+                    <img width="200" src="~/source/costume/costume_man2.jpg" alt="古裝二" />
+                    古裝二
+                </button>
+
+                <button class="btn-with-img">
+                    <img width="200" src="~/source/costume/costume_man3.jpg" alt="古裝三" />
+                    古裝三
+                </button>
+
+                <br />
+                <br />
+
+                <h1 class="section-title px-3">妝容選擇-男</h1>
+                <h5 class="mb-4">Ancientcostume-makeup</h5>
+                <br />
+
+                <button class="btn-with-img">
+                    <img width="200" src="~/source/makeup/makeup_man1.jpg" alt="妝容一" />
+                    妝容一
+                </button>
+
+                <button class="btn-with-img">
+                    <img width="200" src="~/source/makeup/makeup_man2.jpg" alt="妝容二" />
+                    妝容二
+                </button>
+
+                <button class="btn-with-img">
+                    <img width="200" src="~/source/makeup/makeup_man3.jpg" alt="妝容三" />
+                    妝容三
+                </button>
+
+                <br />
+                <br />
+
+                <h1 class="section-title px-3">髮型選擇-男</h1>
+                <h5 class="mb-4">Ancientcostume-hair</h5>
+                <br />
+
+                <button class="btn-with-img">
+                    <img width="200" src="~/source/hair/hair_man1.jpg" alt="髮型一" />
+                    髮型一
+                </button>
+
+                <button class="btn-with-img">
+                    <img width="200" src="~/source/hair/hair_man2.jpg" alt="髮型二" />
+                    髮型二
+                </button>
+
+                <button class="btn-with-img">
+                    <img width="200" src="~/source/hair/hair_man3.jpg" alt="髮型三" />
+                    髮型三
+                </button>
+            </div>
+
+
+            <!--<p class="mb-0">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum tempore nam, architecto doloremque velit explicabo? Voluptate sunt eveniet fuga eligendi! Expedita laudantium fugiat corrupti eum cum repellat a laborum quasi.
+    </p> -->
+
+        </div>
+        <!-- <div class="tab-class text-center">
+            <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
+                <li class="nav-item">
+                    <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill active" data-bs-toggle="pill" href="#NationalTab-1">
+                        <span class="text-dark" style="width: 250px;">National Tour Category</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="d-flex py-2 mx-3 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#InternationalTab-2">
+                        <span class="text-dark" style="width: 250px;">International tour Category</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="NationalTab-1" class="tab-pane fade show p-0 active">
+                    <div class="row g-4">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="national-item">
+                                <img src="/img/explore-tour-1.jpg" class="img-fluid w-100 rounded" alt="Image">
+                                <div class="national-content">
+                                    <div class="national-info">
+                                        <h5 class="text-white text-uppercase mb-2">Weekend Tour</h5>
+                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                    </div>
+                                </div>
+                                <div class="national-plus-icon">
+                                    <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="national-item">
+                                <img src="/img/explore-tour-2.jpg" class="img-fluid w-100 rounded" alt="Image">
+                                <div class="national-content">
+                                    <div class="national-info">
+                                        <h5 class="text-white text-uppercase mb-2">Holiday Tour</h5>
+                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                    </div>
+                                </div>
+                                <div class="national-plus-icon">
+                                    <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="national-item">
+                                <img src="/img/explore-tour-3.jpg" class="img-fluid w-100 rounded" alt="Image">
+                                <div class="national-content">
+                                    <div class="national-info">
+                                        <h5 class="text-white text-uppercase mb-2">Road Trip</h5>
+                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                    </div>
+                                </div>
+                                <div class="tour-offer bg-info">15% Off</div>
+                                <div class="national-plus-icon">
+                                    <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="national-item">
+                                <img src="/img/explore-tour-4.jpg" class="img-fluid w-100 rounded" alt="Image">
+                                <div class="national-content">
+                                    <div class="national-info">
+                                        <h5 class="text-white text-uppercase mb-2">Historical Trip</h5>
+                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                    </div>
+                                </div>
+                                <div class="national-plus-icon">
+                                    <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="national-item">
+                                <img src="/img/explore-tour-5.jpg" class="img-fluid w-100 rounded" alt="Image">
+                                <div class="national-content">
+                                    <div class="national-info">
+                                        <h5 class="text-white text-uppercase mb-2">Family Tour</h5>
+                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                    </div>
+                                </div>
+                                <div class="tour-offer bg-warning">50% Off</div>
+                                <div class="national-plus-icon">
+                                    <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="national-item">
+                                <img src="/img/explore-tour-6.jpg" class="img-fluid w-100 rounded" alt="Image">
+                                <div class="national-content">
+                                    <div class="national-info">
+                                        <h5 class="text-white text-uppercase mb-2">Beach Tour</h5>
+                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                    </div>
+                                </div>
+                                <div class="national-plus-icon">
+                                    <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="InternationalTab-2" class="tab-pane fade show p-0">
+                    <div class="InternationalTour-carousel owl-carousel">
+                        <div class="international-item">
+                            <img src="/img/explore-tour-1.jpg" class="img-fluid w-100 rounded" alt="Image">
+                            <div class="international-content">
+                                <div class="international-info">
+                                    <h5 class="text-white text-uppercase mb-2">Australia</h5>
+                                    <a href="#" class="btn-hover text-white me-4"><i class="fas fa-map-marker-alt me-1"></i> 8 Cities</a>
+                                    <a href="#" class="btn-hover text-white"><i class="fa fa-eye ms-2"></i> <span>143+ Tour Places</span></a>
+                                </div>
+                            </div>
+                            <div class="tour-offer bg-success">30% Off</div>
+                            <div class="international-plus-icon">
+                                <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                            </div>
+                        </div>
+                        <div class="international-item">
+                            <img src="/img/explore-tour-2.jpg" class="img-fluid w-100 rounded" alt="Image">
+                            <div class="international-content">
+                                <div class="international-info">
+                                    <h5 class="text-white text-uppercase mb-2">Germany</h5>
+                                    <a href="#" class="btn-hover text-white me-4"><i class="fas fa-map-marker-alt me-1"></i> 12 Cities</a>
+                                    <a href="#" class="btn-hover text-white"><i class="fa fa-eye ms-2"></i> <span>21+ Tour Places</span></a>
+                                </div>
+                            </div>
+                            <div class="international-plus-icon">
+                                <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                            </div>
+                        </div>
+                        <div class="international-item">
+                            <img src="/img/explore-tour-3.jpg" class="img-fluid w-100 rounded" alt="Image">
+                            <div class="international-content">
+                                <div class="tour-offer bg-warning">45% Off</div>
+                                <div class="international-info">
+                                    <h5 class="text-white text-uppercase mb-2">Spain</h5>
+                                    <a href="#" class="btn-hover text-white me-4"><i class="fas fa-map-marker-alt me-1"></i> 9 Cities</a>
+                                    <a href="#" class="btn-hover text-white"><i class="fa fa-eye ms-2"></i> <span>133+ Tour Places</span></a>
+                                </div>
+                            </div>
+                            <div class="international-plus-icon">
+                                <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                            </div>
+                        </div>
+                        <div class="international-item">
+                            <img src="/img/explore-tour-4.jpg" class="img-fluid w-100 rounded" alt="Image">
+                            <div class="international-content">
+                                <div class="international-info">
+                                    <h5 class="text-white text-uppercase mb-2">Japan</h5>
+                                    <a href="#" class="btn-hover text-white me-4"><i class="fas fa-map-marker-alt me-1"></i> 8 Cities</a>
+                                    <a href="#" class="btn-hover text-white"><i class="fa fa-eye ms-2"></i> <span>137+ Tour Places</span></a>
+                                </div>
+                            </div>
+                            <div class="international-plus-icon">
+                                <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                            </div>
+                        </div>
+                        <div class="international-item">
+                            <img src="/img/explore-tour-5.jpg" class="img-fluid w-100 rounded" alt="Image">
+                            <div class="international-content">
+                                <div class="tour-offer bg-info">70% Off</div>
+                                <div class="international-info">
+                                    <h5 class="text-white text-uppercase mb-2">London</h5>
+                                    <a href="#" class="btn-hover text-white me-4"><i class="fas fa-map-marker-alt me-1"></i> 17 Cities</a>
+                                    <a href="#" class="btn-hover text-white"><i class="fa fa-eye ms-2"></i> <span>26+ Tour Places</span></a>
+                                </div>
+                            </div>
+                            <div class="international-plus-icon">
+                                <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+    </div>
+</div>
+<!-- Explore Tour Start -->
+<!-- Subscribe Start -->
+<!--<div class="container-fluid subscribe py-5">
+    <div class="container text-center py-5">
+        <div class="mx-auto text-center" style="max-width: 900px;">
+            <h5 class="subscribe-title px-3">Subscribe</h5>
+            <h1 class="text-white mb-4">Our Newsletter</h1>
+            <p class="text-white mb-5">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum tempore nam, architecto doloremque velit explicabo? Voluptate sunt eveniet fuga eligendi! Expedita laudantium fugiat corrupti eum cum repellat a laborum quasi.
+            </p>
+            <div class="position-relative mx-auto">
+                <input class="form-control border-primary rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                <button type="button" class="btn btn-primary rounded-pill position-absolute top-0 end-0 py-2 px-4 mt-2 me-2">Subscribe</button>
+            </div>
+        </div>
+    </div>
+</div>-->
+<!-- Subscribe End -->
+
+
+@section MyJs{
+    <script>
+        function showCalendar() {
+            document.getElementById('calendarView').classList.add('active');
+            document.getElementById('listView').classList.remove('active');
+        }
+
+        function showList() {
+            document.getElementById('calendarView').classList.remove('active');
+            document.getElementById('listView').classList.add('active');
+        }
+
+        function toggle() {
+            document.getElementById('short').style.display = 'block'; // 顯示行程資訊
+            document.getElementById('long').style.display = 'none'; // 隱藏行程資訊
+        }
+
+        function toggle2() {
+            document.getElementById('long').style.display = 'block'; // 顯示行程資訊
+            document.getElementById('short').style.display = 'none'; // 隱藏行程資訊
+        }
+
+        function togglewoman() {
+            document.getElementById('woman').style.display = 'block';
+            document.getElementById('man').style.display = 'none';
+        }
+
+        function toggleman() {
+            document.getElementById('man').style.display = 'block';
+            document.getElementById('woman').style.display = 'none';
+        }
+    </script>
+} 

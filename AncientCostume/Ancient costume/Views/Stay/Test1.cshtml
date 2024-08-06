@@ -1,0 +1,139 @@
+﻿
+@{
+    ViewBag.Title = "Test1";
+}
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>訂房系統</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h2>填寫訂房資料</h2>
+        <form>
+            <!-- 訂單聯絡人 -->
+            <div class="mb-4">
+                <h4>訂單聯絡人</h4>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="contactName" class="form-label">姓名</label>
+                        <input type="text" class="form-control" id="contactName" placeholder="請輸入姓名">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="email" placeholder="請輸入E-mail">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="phoneNumber" class="form-label">手機號碼</label>
+                        <input type="tel" class="form-control" id="phoneNumber" placeholder="請輸入手機號碼">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 填寫旅客資料 -->
+            <div class="mb-4">
+                <h4>填寫旅客資料</h4>
+                <div class="accordion" id="travelerAccordion">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                第一間 (2大0小)
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#travelerAccordion">
+                            <div class="accordion-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label for="representativeName" class="form-label">入住代表人</label>
+                                        <input type="text" class="form-control" id="representativeName" placeholder="請輸入代表人姓名">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="lastName" class="form-label">英文姓氏</label>
+                                        <input type="text" class="form-control" id="lastName" placeholder="請輸入英文姓氏">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="firstName" class="form-label">英文名字</label>
+                                        <input type="text" class="form-control" id="firstName" placeholder="請輸入英文名字">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="country" class="form-label">國籍</label>
+                                        <input type="text" class="form-control" id="country" placeholder="請輸入國籍">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 服務及資料寄送 -->
+            <div class="mb-4">
+                <h4>服務及資料寄送</h4>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="checkInTime" class="form-label">飯店附加訊息</label>
+                        <select class="form-select" id="checkInTime">
+                            <option selected>請選擇預計抵達飯店時間</option>
+                            <option value="15:00">15:00</option>
+                            <option value="16:00">16:00</option>
+                            <option value="17:00">17:00</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        <label for="specialRequests" class="form-label">特殊需求</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="nonSmokingRoom">
+                            <label class="form-check-label" for="nonSmokingRoom">
+                                非吸菸房
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="nearElevator">
+                            <label class="form-check-label" for="nearElevator">
+                                鄰近房
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="highFloor">
+                            <label class="form-check-label" for="highFloor">
+                                高樓層
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8">
+                <!-- 填寫訂房資料表單 -->
+            </div>
+            <div class="col-md-4">
+                <h4>費用明細</h4>
+                <div class="card">
+                    <div class="card-body">
+                        <p>1間 x 1晚</p>
+                        <p>小計: TWD 4,299</p>
+                        <p>總價: TWD 4,299</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>*@
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+>
+

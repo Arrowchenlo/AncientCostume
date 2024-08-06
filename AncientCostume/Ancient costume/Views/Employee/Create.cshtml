@@ -1,0 +1,303 @@
+﻿@model Ancient_costume.Models.Journey
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@section MyCss{
+    <style>
+        #customers {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+            #customers td, #customers th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+
+            #customers tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #customers tr:hover {
+                background-color: #ddd;
+            }
+
+            #customers th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #04AA6D;
+                color: white;
+            }
+    </style>
+}
+
+<div class="content-form-page container">
+    <h1>新增行程</h1>
+    @*彙整顯示帳號密碼錯誤*@
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    @*form表單新增method="post",action=/Account/Login;傳圖片要加上enctype="multipart/form-data"*@
+    <form action="/Employee/Create" method="post" role="form" class="form-horizontal form-without-legend" enctype="multipart/form-data">
+
+        <div class="card">
+
+            <div class="card-header">新增旅遊行程</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="first-name">旅遊名稱 </label>
+                            @*<input type="text" id="first-name" name="username" class="form-control">*@
+                            @Html.EditorFor(model => model.JourneyName, new { htmlAttributes = new { @class = "form-control" ,id="journeyname"} })
+                            @*@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">旅遊日期</label>
+                        <input type="text" class="form-control" id="journeydate">
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">旅遊內容</label>
+                            @*<input type="text" id="first-name" name="password" class="form-control">*@
+                            @Html.EditorFor(model => model.JourneyContent, new { htmlAttributes = new { @class = "form-control" , id="journeycontent"} })
+                            @*@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">旅遊景點</label>
+                            @*<input type="text" id="first-name" name="password" class="form-control">*@
+                            @Html.EditorFor(model => model.Sights, new { htmlAttributes = new { @class = "form-control" , id="sights"} })
+                            @*@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">旅遊住宿</label>
+                            @*<input type="text" id="first-name" name="password" class="form-control">*@
+                            @Html.EditorFor(model => model.Stay, new { htmlAttributes = new { @class = "form-control" , id="stay"} })
+                            @*@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })*@
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <br />
+
+        <div class="card">
+            <div class="card-header">新增住宿圖片、內容</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">住宿圖片</label>
+                        @*上傳文件優先使用input type="file"，因為EditorFor不支援type="file"*@
+                        <input type="file" id = "stImage1" class="form-control" name="stImage1">
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">住宿圖片</label>
+
+                        @*上傳文件優先使用input type="file"，因為EditorFor不支援type="file"*@
+                        <input type="file" id = "stImage2" class="form-control" name="stImage2">
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">住宿圖片</label>
+
+                        @*上傳文件優先使用input type="file"，因為EditorFor不支援type="file"*@
+                        <input type="file" id = "stImage3" class="form-control" name="stImage3">
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">住宿標題</label>
+                        @*<input type="text" id="first-name" name="password" class="form-control">*@
+                        @Html.EditorFor(model => model.Stay_title, new { htmlAttributes = new { @class = "form-control", id = "Stay_title" } })
+                        @*@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">住宿內容</label>
+                        @*<input type="text" id="first-name" name="password" class="form-control">*@
+                        @Html.EditorFor(model => model.Stay_text, new { htmlAttributes = new { @class = "form-control", id = "Stay_text" } })
+                        @*@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="card">
+            <div class="card-header">新增旅遊提醒</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <label class="control-label" for="last-name">旅遊注意事項</label>
+                        @*<input type="text" id="first-name" name="password" class="form-control">*@
+                        @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control", id = "Remarks" } })
+                        @*@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label class="control-label" for="last-name">旅遊集合地點</label>
+                        @*<input type="text" id="first-name" name="password" class="form-control">*@
+                        @Html.EditorFor(model => model.AssemblyPlace, new { htmlAttributes = new { @class = "form-control", id = "AssemblyPlace" } })
+                        @*@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label class="control-label" for="last-name">旅遊地區</label>
+                        @*<input type="text" id="first-name" name="password" class="form-control">*@
+                        @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control", id = "Location" } })
+                        @*@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="card">
+            <div class="card-header">新增景點圖片、內容</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">行程首圖片</label>
+                        @*<input type="text" id="first-name" name="password" class="form-control">*@
+
+                        @*上傳文件優先使用input type="file"，因為EditorFor不支援type="file"*@
+                        <input type="file" id = "pImage" class="form-control" name="pImage">
+
+                        @*@Html.EditorFor(model => model.EditImage, new { htmlAttributes = new { @class = "form-control", @type = "file" , @name= "pImage" } })*@
+                        @*@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">景點圖片</label>
+                        <input type="file" id = "sImage1" class="form-control" name="sImage1">
+
+                        @*@Html.EditorFor(model => model.Sights_img1, new { htmlAttributes = new { @class = "form-control", type = "file" } })*@
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">景點圖片</label>
+                        <input type="file" id = "sImage2" class="form-control" name="sImage2">
+
+                        @*@Html.EditorFor(model => model.Sights_img1, new { htmlAttributes = new { @class = "form-control", type = "file" } })*@
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">景點圖片</label>
+                        <input type="file" id = "sImage3" class="form-control" name="sImage3">
+
+                        @*@Html.EditorFor(model => model.Sights_img1, new { htmlAttributes = new { @class = "form-control", type = "file" } })*@
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">景點標題</label>
+                        @*<input type="text" id="first-name" name="password" class="form-control">*@
+                        @Html.EditorFor(model => model.Sights_title, new { htmlAttributes = new { @class = "form-control" , id = "Sights_title" } })
+                        @*@Html.ValidationMessageFor(model => model.JourneyName, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">景點內容</label>
+                        @*<input type="text" id="first-name" name="password" class="form-control">*@
+                        @Html.EditorFor(model => model.Sights_text, new { htmlAttributes = new { @class = "form-control", id = "Sights_text" } })
+                        @*@Html.ValidationMessageFor(model => model.JourneyName, "", new { @class = "text-danger" })*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="card">
+            <div class="card-header">新增旅遊費用項目</div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">旅遊費用項目</label>
+                        @*<input type="text" id="first-name" name="password" class="form-control">*@
+                        @Html.EditorFor(model => model.ExpenseItems, new { htmlAttributes = new { @class = "form-control" , id= "expenseitems" } })
+                        @*@Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">化妝費用</label>
+                        @*<input type="text" id="first-name" name="password" class="form-control">*@
+                        @Html.EditorFor(model => model.MakeUpExpenses, new { htmlAttributes = new { @class = "form-control" , id= "makeupexpenses" } })
+                        @*@Html.ValidationMessageFor(model => model.JourneyName, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">攝影費用</label>
+                        @*<input type="text" id="first-name" name="password" class="form-control">*@
+                        @Html.EditorFor(model => model.Photo, new { htmlAttributes = new { @class = "form-control" , id= "photo" } })
+                        @*@Html.ValidationMessageFor(model => model.JourneyName, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">運輸費用</label>
+                        @*<input type="text" id="first-name" name="password" class="form-control">*@
+                        @Html.EditorFor(model => model.Transportation, new { htmlAttributes = new { @class = "form-control", id = "transportation" } })
+                        @*@Html.ValidationMessageFor(model => model.JourneyName, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">住宿費用</label>
+                        @*<input type="text" id="first-name" name="password" class="form-control">*@
+                        @Html.EditorFor(model => model.StayExpenses, new { htmlAttributes = new { @class = "form-control", id = "stayexpenses" } })
+                        @*@Html.ValidationMessageFor(model => model.JourneyName, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">活動費用</label>
+                        @*<input type="text" id="first-name" name="password" class="form-control">*@
+                        @Html.EditorFor(model => model.Activity, new { htmlAttributes = new { @class = "form-control", id = "activity" } })
+                        @*@Html.ValidationMessageFor(model => model.JourneyName, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">車資費用</label>
+                        @*<input type="text" id="first-name" name="password" class="form-control">*@
+                        @Html.EditorFor(model => model.CarFare, new { htmlAttributes = new { @class = "form-control", id = "carfare" } })
+                        @*@Html.ValidationMessageFor(model => model.JourneyName, "", new { @class = "text-danger" })*@
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <label class="control-label" for="last-name">食物費用</label>
+                        @*<input type="text" id="first-name" name="password" class="form-control">*@
+                        @Html.EditorFor(model => model.Food, new { htmlAttributes = new { @class = "form-control" , id="food"} })
+                        @*@Html.ValidationMessageFor(model => model.JourneyName, "", new { @class = "text-danger" })*@
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-8 col-md-offset-2 padding-left-0 padding-top-20">
+                <button class="btn btn-primary" type="submit">新增</button>
+                <input type="button" id="autoinput" value="自動填值" class="btn btn-primary"/>
+            </div>
+        </div>
+    </form>
+    
+</div>
+
+@section MyJs{
+    <script>
+        $(document).ready(function () {
+            $("#autoinput").click(function () {
+                $("#journeyname").val("新增老塘湖藝術村");
+                $("#journeydate").val("@DateTime.Now");
+                $("#journeycontent").val("高雄老塘湖藝術村一日遊行程07:00 台北車站集合，搭乘台鐵列車出發【台北 - 高雄】10: 40 抵達高雄，前往老塘湖藝術村，感受藝術與自然的完美融合12:00 享用在地午餐，品嚐高雄的美味特色菜餚13: 30 參觀藝術村內的各個展區，欣賞藝術作品，參加DIY工藝活動14: 40 探索藝術村周邊的自然景點，漫步在風景如畫的湖畔16: 20 造訪老塘湖藝術村內的古裝拍攝區，穿上古裝拍照留念17:00 前往高雄六合夜市，品嘗當地小吃，感受夜市的熱鬧氛圍19:00 返回高雄市區飯店，結束一天愉快的行程，晚安讓我們一起在高雄老塘湖藝術村體驗藝術與古裝的魅力，度過難忘的一天！");
+                $("#sights").val("老塘湖藝術村");
+                $("#stay").val("林桂園石泉會館");
+                    
+                //$("#stImage2").val("s8.jpg");
+                //$("#stImage3").val("s8.jpg");
+                $("#Stay_title").val("關子嶺林桂園石泉會館設有溫泉浴池，周圍綠意盎然，是個寵物友善的度假去處。度假村提供免費私人停車位，全區均可使用免費 WiFi。");
+                $("#Stay_text").val("這間度假村距離紅葉公園僅 5 分鐘車程，距離關子嶺公車站 15～20 分鐘步行路程，距離阿里山 26 公里。每間住宿單位均予人極簡而沉穩之感，鋪設木地板，並提供平面電視和電熱水壺。衛浴設有浴缸，備有免費盥洗用品。住客可在美麗的花園裡與大自然親密接觸，或在公共休息區度過休閒時光。各種餐館沿主要街道林立，只需步行 10 分鐘即可到達。");
+                $("#Remarks").val("注意事項");
+                $("#AssemblyPlace").val("台北車站");
+                $("#Location").val("tw");
+                //$("#pImage").val("s8.jpg");
+                //$("#sImage1").val("s8-1.jpg");
+                //$("#sImage2").val("s8-1.jpg");
+                //$("#sImage3").val("s8-1.jpg");
+                $("#Sights_title").val("老塘湖藝術村佔地四公頃，原為一處私人地，地主經整理後開放給民眾參觀，為一座用頹廢風打造成的古村莊。 藝術家匡進福（匡乙）收集30年的古建物古建材，花了十多年，自己親手監建再造的古鎮古蹟，彷彿穿梭時光隧道回到以前五零年代的農村生活，有仿古紅樓、茶樓、客棧...還有戶外仿江南的池塘風光，充滿懷舊詩意，有著美麗的復古風情。");
+                $("#Sights_text").val("遊客們在老塘湖藝術村不僅能夠欣賞到獨特的藝術環境，還能夠體驗到傳統的台灣文化。例如，財神廟作為村內的一個重要景點，讓遊客能夠感受到台灣傳統信仰的深厚底蘊。園區內的消費也十分注重融入當地的特色，例如提供以古厝材料為基礎的特色商品，讓遊客可以一邊欣賞藝術，一邊感受台灣的古早味。藝術村的大眾交通便利，讓遊客可以輕鬆到達這個充滿魅力的地方。而船遊湖濱更是一種特有的交通方式，讓遊客可以在湖光山色中欣賞到藝術村的美景。老塘湖藝術村不僅是一個展現藝術創作的場所，更是一個融合了歷史、文化、環保和藝術的綜合體驗。 在這裡，遊客可以感受到台灣豐富多彩的藝術風貌，同時也能夠領略到古老農村生活和現代文化的和諧交融。 老塘湖藝術村無疑是台灣藝術領域一顆璀璨的明珠，值得每位藝術愛好者前來親自體驗。");
+                $("#expenseitems").val("化妝、攝影拍照、運輸、住宿、活動、車資、食物");
+                $("#makeupexpenses").val("3000");
+                $("#photo").val("2000");
+                $("#transportation").val("1000");
+                $("#stayexpenses").val("3000");
+                $("#activity").val("3000");
+                $("#carfare").val("1000");
+                $("#food").val("1000");
+            });
+        });
+    </script>
+}

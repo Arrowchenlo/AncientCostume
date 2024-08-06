@@ -1,0 +1,263 @@
+﻿@model Ancient_costume.Models.Journey
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="container">
+    <h2>刪除行程</h2>
+    <h3>確定刪除行程資料?</h3>
+    <h4>Journey</h4>
+    <div class="card">
+        <div class="card-header">刪除資料內容</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2">
+                    @*旅遊名稱:*@
+                    @Html.DisplayNameFor(model => model.JourneyName)
+                    <br />
+                    @Html.DisplayFor(model => model.JourneyName)
+                </div>
+
+                <div class="col-md-2">
+                    @Html.DisplayNameFor(model => model.JourneyDate)
+                    <br />
+                    @Html.DisplayFor(model => model.JourneyDate)
+                </div>
+
+                <div class="col-md-2">
+                    @Html.DisplayNameFor(model => model.JourneyContent)
+                    <br />
+                    @Html.DisplayFor(model => model.JourneyContent)
+                </div>
+
+                <div class="col-md-2">
+                    @Html.DisplayNameFor(model => model.Sights)
+                    <br />
+                    @Html.DisplayFor(model => model.Sights)
+                </div>
+
+                <div class="col-md-2">
+                    @Html.DisplayNameFor(model => model.Stay)
+                    <br />
+                    @Html.DisplayFor(model => model.Stay)
+                </div>
+
+                <div class="col-md-2">
+                    @Html.DisplayNameFor(model => model.ExpenseItems)
+                    <br />
+                    @Html.DisplayFor(model => model.ExpenseItems)
+                </div>
+
+                <div class="col-md-2">
+                    @Html.DisplayNameFor(model => model.Remarks)
+                    <br />
+                    @Html.DisplayFor(model => model.Remarks)
+                </div>
+
+                <div class="col-md-2">
+                    @Html.DisplayNameFor(model => model.AssemblyPlace)
+                    <br />
+                    @Html.DisplayFor(model => model.AssemblyPlace)
+                </div>
+
+                <div class="col-md-2">
+                    @Html.DisplayNameFor(model => model.DailyItinerary)
+                    <br />
+                    @Html.DisplayFor(model => model.DailyItinerary)
+                </div>
+
+                <div class="col-md-2">
+                    @Html.DisplayNameFor(model => model.Location)
+                    <br />
+                    @Html.DisplayFor(model => model.Location)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="card">
+        <div class="card-header">刪除資料內容</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2">
+                    @Html.DisplayNameFor(model => model.ExpenseItems)
+                    <br />
+                    @Html.DisplayFor(model => model.ExpenseItems)
+                </div>
+
+                <div class="col-md-2">
+                    @Html.DisplayNameFor(model => model.MakeUpExpenses)
+                    <br />
+                    @Html.DisplayFor(model => model.MakeUpExpenses)
+                </div>
+
+                <div class="col-md-2">
+                    @Html.DisplayNameFor(model => model.Photo)
+                    <br />
+                    @Html.DisplayFor(model => model.Photo)
+                </div>
+
+                <div class="col-md-2">
+                    @Html.DisplayNameFor(model => model.Transportation)
+                    <br />
+                    @Html.DisplayFor(model => model.Transportation)
+                </div>
+
+                <div class="col-md-2">
+                    @Html.DisplayNameFor(model => model.StayExpenses)
+                    <br />
+                    @Html.DisplayFor(model => model.StayExpenses)
+                </div>
+
+                <div class="col-md-2">
+                    @Html.DisplayNameFor(model => model.Activity)
+                    <br />
+                    @Html.DisplayFor(model => model.Activity)
+                </div>
+
+                <div class="col-md-2">
+                    @Html.DisplayNameFor(model => model.CarFare)
+                    <br />
+                    @Html.DisplayFor(model => model.CarFare)
+                </div>
+
+                <div class="col-md-2">
+                    @Html.DisplayNameFor(model => model.Food)
+                    <br />
+                    @Html.DisplayFor(model => model.Food)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="card">
+        <div class="card-header">刪除資料內容</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.DisplayNameFor(model => model.Sights_title)
+                    <br />
+                    @Html.DisplayFor(model => model.Sights_title)
+                </div>
+
+                <div class="col-md-6">
+                    @Html.DisplayNameFor(model => model.Sights_text)
+                    <br />
+                    @Html.DisplayFor(model => model.Sights_text)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="card">
+        <div class="card-header">刪除資料內容</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.DisplayNameFor(model => model.Stay_title)
+                    <br />
+                    @Html.DisplayFor(model => model.Stay_title)
+                </div>
+
+                <div class="col-md-6">
+                    @Html.DisplayNameFor(model => model.Stay_text)
+                    <br />
+                    @Html.DisplayFor(model => model.Stay_text)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="card">
+        <div class="card-header">刪除資料內容</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.DisplayNameFor(model => model.Stay_img1)
+                    <br>
+                    <img width="200" src="@Url.Content("~/source/stay/" + @Model.Stay_img1)">
+                    <br />
+                    @Html.DisplayFor(model => model.Stay_img1)
+                </div>
+
+                <div class="col-md-4">
+                    @Html.DisplayNameFor(model => model.Stay_img2)
+                    <br>
+                    <img width="200" src="@Url.Content("~/source/stay/" + @Model.Stay_img2)">
+                    <br />
+                    @Html.DisplayFor(model => model.Stay_img2)
+                </div>
+
+                <div class="col-md-4">
+                    @Html.DisplayNameFor(model => model.Stay_img3)
+                    <br>
+                    <img width="200" src="@Url.Content("~/source/stay/" + @Model.Stay_img3)">
+                    <br />
+                    @Html.DisplayFor(model => model.Stay_img3)
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="card">
+        <div class="card-header">刪除資料內容</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    @Html.DisplayNameFor(model => model.EditImage)
+                    <br />
+                    <img width="200" src="@Url.Content("~/source/sights/" + @Model.EditImage)">
+                    <br />
+                    @Html.DisplayFor(model => model.EditImage)
+                </div>
+                <div class="col-md-3">
+                    @Html.DisplayNameFor(model => model.Sights_img1)
+                    <br />
+                    <img width="200" src="@Url.Content("~/source/sights/" + @Model.Sights_img1)">
+                    <br />
+                    @Html.DisplayFor(model => model.Sights_img1)
+                </div>
+
+                <div class="col-md-3">
+                    @Html.DisplayNameFor(model => model.Sights_img2)
+                    <br />
+                    <img width="200" src="@Url.Content("~/source/sights/" + @Model.Sights_img2)">
+                    <br />
+                    @Html.DisplayFor(model => model.Sights_img2)
+                </div>
+
+                <div class="col-md-3">
+                    @Html.DisplayNameFor(model => model.Sights_img3)
+                    <br />
+                    <img width="200" src="@Url.Content("~/source/sights/" + @Model.Sights_img3)">
+                    <br />
+                    @Html.DisplayFor(model => model.Sights_img3)
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            @*指定value=Delete傳入Employee/Delete2*@
+            <input type="submit" value="Delete" class="btn btn-default" /> 
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+
+</div>
