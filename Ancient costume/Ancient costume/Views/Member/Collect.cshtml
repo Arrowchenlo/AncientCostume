@@ -1,0 +1,42 @@
+﻿@model List<Ancient_costume.Models.Favorite>
+
+@{
+    ViewBag.Title = "Collect";
+}
+
+
+<div class="container">
+    <h1>我的收藏</h1>
+    <h4>Collect</h4>
+    <hr />
+    <div class="tab-content">
+        <div id="NationalTab-1" class="tab-pane fade show p-0 active">
+            <div class="row g-4 tab-class text-center ">
+                
+                @foreach (var item in Model)
+                {
+                <div class="col-md-6 col-lg-4">
+                    <div class="national-item" onclick="location.href='/Member/Journey/@item.Journey.Id'">
+                        <img src="/source/sights/@item.Journey.EditImage" class="img-fluid w-100 rounded" alt="Image">
+                        <div class="national-content">
+                            <div class="national-info">
+                                <h5 class="text-blue text-uppercase mb-2">@item.Journey.JourneyName</h5>
+                                @Html.ActionLink("刪除收藏", "DeleteFavorite", new { id = item.Id }, new { @class = "btn btn-primary" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                }
+
+            </div>
+        </div>
+    </div>
+
+    <hr>
+    
+
+
+
+    <p>@Html.ActionLink("回首頁", "Index")</p>
+</div>

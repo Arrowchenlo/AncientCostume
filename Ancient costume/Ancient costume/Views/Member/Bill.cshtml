@@ -1,0 +1,169 @@
+﻿@model List<Ancient_costume.Models.Journey>
+
+@{
+    ViewBag.Title = "Bill";
+}
+
+@*用session將資料顯示在bill*@
+
+
+@section MyCss{
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            font-size: 20px;
+            font-weight: 300;
+        }
+    </style>
+}
+
+
+
+<div class="container">
+
+    <h1>旅程明細</h1>
+    <br />
+    <div class="card">
+        <div class="card-header">個人資料</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2">
+                    姓名:@ViewBag.name
+                </div>
+                <div class="col-md-2">
+                    身分證:@ViewBag.twid
+                </div>
+                <div class="col-md-2">
+                    電話:@ViewBag.phone
+                </div>
+                <div class="col-md-2">
+                    地址:@ViewBag.address
+                </div>
+                <div class="col-md-2">
+                    人數:@ViewBag.selectPerson
+                </div>
+                <div class="col-md-2">
+                    飲食習慣:@ViewBag.Selectfood
+                </div>
+                <div class="col-md-2">
+                    孩童:@ViewBag.Selectchild
+                </div>
+                <div class="col-md-2">
+                    特殊需求:@ViewBag.message
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="card">
+        <div class="card-header">旅程資訊</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-2">
+                    旅遊名稱:@ViewBag.JourneyName
+                </div>
+                <br />
+                <br />
+                <div class="col-md-12">
+                    旅遊內容:@ViewBag.JourneyContent
+                    <br />
+                </div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <br />
+                <div class="col-md-2">
+                    旅遊景點:@ViewBag.Sights
+                </div>
+                <div class="col-md-2">
+                    旅遊住宿:@ViewBag.Stay
+                </div>
+                <div class="col-md-2">
+                    旅遊集合地點:@ViewBag.AssemblyPlace
+                </div>
+                <div class="col-md-2">
+                    旅遊行程:@ViewBag.DailyItinerary
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <br />
+
+    <div class="card">
+        <div class="card-header">旅遊費用</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    旅遊費用項目:
+                    @ViewBag.ExpenseItems
+                </div>
+                <br />
+                <div class="col-md-2">
+                    旅遊費用-化妝:@ViewBag.MakeUpExpenses
+                </div>
+                <div class="col-md-2">
+                    旅遊費用-拍照攝影:@ViewBag.Photo
+                </div>
+                <div class="col-md-2">
+                    旅遊費用-交通:@ViewBag.Transportation
+                </div>
+                <div class="col-md-2">
+                    旅遊費用-車資:@ViewBag.CarFare
+                </div>
+                <div class="col-md-2">
+                    旅遊費用-住宿:@ViewBag.StayExpenses
+                </div>
+                <div class="col-md-2">
+                    旅遊費用-活動:@ViewBag.Activity
+                </div>
+                <div class="col-md-2">
+                    旅遊費用-食物:@ViewBag.Food
+                </div>
+                <div class="col-md-12" style="color:red; font-size:30px">
+                    @{
+                        var total = 0;
+                        int.TryParse(ViewBag.MakeUpExpenses, out int makeUpExpenses);
+                        int.TryParse(ViewBag.Photo, out int photo);
+                        int.TryParse(ViewBag.Transportation, out int transportation);
+                        int.TryParse(ViewBag.CarFare, out int carFare);
+                        int.TryParse(ViewBag.StayExpenses, out int stayExpenses);
+                        int.TryParse(ViewBag.Activity, out int activity);
+                        int.TryParse(ViewBag.Food, out int food);
+                        total = makeUpExpenses + photo + transportation + carFare + stayExpenses + activity + food;
+                    }
+                    總費用: <strong>@total</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="card">
+        <div class="card-header">選擇的古裝內容</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <img width="200" src="@Url.Content("~/source/costume/" + @ViewData["custom"] + ".jpg")">
+                </div>
+                <div class="col-md-4">
+                    <img width="200" src="@Url.Content("~/source/makeup/" + @ViewData["makeup"] + ".jpg")">
+                </div>
+                <div class="col-md-4">
+                    <img width="200" src="@Url.Content("~/source/hair/" + @ViewData["hair"] + ".jpg")">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <input class="btn btn-primary" type="button" name="OrderList" value="檢視訂單" onclick="location.href='/Member/OrderList'" />
+</div>

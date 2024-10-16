@@ -1,0 +1,553 @@
+﻿@model Ancient_costume.Models.Journey
+
+
+
+
+@{
+    ViewBag.Title = "Journey";
+}
+
+@section MyCss{
+
+    @*引用fullcalendar的css*@
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <script src="~/Scripts/main.js"></script>
+    <script src="~/Scripts/locales-all.js"></script>
+
+    <style>
+        .label {
+            display: inline-block; /*讓按鈕以行內塊元素顯示*/
+            text-align: center; /*文字置中*/
+            font-size: 16px; /*設定文字大小*/
+            margin: 10px; /*設定外邊距*/
+        }
+
+        .label img {
+            display: block; /*圖片獨占一行*/
+            margin: 0 auto; /*圖片水平置中*/
+            width: 200px; /*設定圖片寬度*/
+        }
+
+        body {
+            font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+        }
+
+        #script-warning {
+            display: none;
+            background: #eee;
+            border-bottom: 1px solid #ddd;
+            padding: 0 10px;
+            line-height: 40px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 12px;
+            color: red;
+        }
+
+        #loading {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        #calendar {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 10px;
+        }
+
+        #journtynav {
+            /*導航欄滾動到一定的位置才「黏附」在螢幕頂部*/
+            position: sticky;
+            /*指定觸發「sticky」效果的位置。*/
+            top: 48px;
+            width: 100%;
+            padding: 70px;
+            display: flex; /*實現水平排列的效果*/
+            justify-content: center; /* 讓文字在導航欄中居中排列 */
+        }
+
+        .btn btn-danger btn-lg {
+            padding-top: 48px;
+        }
+    </style>
+
+}
+
+@*從Member/Index選行程才能進入Journey => /Member/Journey/@item.Id*@
+
+
+<!-- Explore Tour Start -->
+@*固定導航列，方便使用功能，並卷軸顯示隱藏、黏附頁面頂部*@
+<nav id="journtynav" class="navbar navbar-expand-lg px-4 navbar-light px-lg-5 py-3 py-lg-0 text-center">
+    <div class="navbar-nav py-4">
+        @*點選收藏將JourneyId帶入Collect*@
+        <input type="button" name="collect" value="加入收藏" onclick="location.href='/Member/AddFavorite/@Model.Id'" class="btn btn-danger btn-lg" />
+    </div>
+    <div class="col-1">
+        @*from外，使用smbmit*@
+        <input type="button" onclick="submitForm()" name="name" value="報名行程" class="btn btn-danger btn-lg" />
+    </div>
+    <p>選擇完古裝、妝、髮再報名行程</p>
+</nav>
+
+<div class="container">
+
+    @*使用calendar顯示旅程出發日期*@
+    <div class="button-group">
+        <div id='calendar'></div>
+    </div>
+
+    <br />
+
+    <div class="row">
+
+        <div class="col-12">
+
+            <h1 class="section-title px-3">旅遊特色</h1>
+            <h5 class="mb-4">Explore Tour</h5>
+
+            @*帶入db資料*@
+            @Model.JourneyName<br>
+            @Model.JourneyContent<br>
+
+            <br>
+
+            <h1 class="section-title px-3">推薦景點</h1>
+            <h5 class="mb-4">Sights</h5>
+
+            @*帶入db資料*@
+            @Model.Sights<br>
+
+            @*gridview排版*@
+            <!--Columns排版-->
+            <div id="EmployeeColumns" class="row">
+                @*預計foreach*@
+                @*預計使用db關聯傳送圖片sights*@
+                <div class="card ">
+                    @*<img class="card-img-top" src="@Url.Content("~/Images/" + item.ProductID + ".jpg")" />*@
+                    <img class="card-img-top" src="~/source/sights/@Model.Sights_img1" />
+
+                    <div class="card-body">
+                        <h5 class="card-title text-center">
+                            @Model.Sights_title
+                            @*登義DengYi 來自一間創立半甲子有餘的中藥行，中藥店。*@
+                        </h5>
+                        <hr />
+                        <p class="card-text">
+                            @Model.Sights_text
+                            @*我們認為唯有透過用心觀察與實作，去了解「漢藥」與「中藥行」在現代人生活的扮演角色，才能持續讓中藥行在當代茁壯與永續，並且走入大眾日常，讓漢藥的美能透過場域的衍繹與中藥行職人的互動，與大家一起實踐漢方生活。
+                                我們憑著搭配過各式香料滷包、以及獨門的漢藥配方，搭配豐富的選材經驗與炮製漢藥材的專業，透過盅湯與滷味，打造充滿漢藥文化的食體驗，讓中藥行走進尋常百姓廚房！
+                                園區位置
+                                文昌街33號
+                                營業時間
+                                0900-1800*@
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card col-md-4">
+                    <img class="card-img-top" src="~/source/sights/@Model.Sights_img2" />
+
+                </div>
+                <div class="card col-md-4">
+                    <img class="card-img-top" src="~/source/sights/@Model.Sights_img3" />
+
+                </div>
+
+            </div>
+
+
+            <h1 class="section-title px-3">住宿</h1>
+            <h5 class="mb-4">Stay</h5>
+            @*帶入db資料*@
+            @Model.Stay<br>
+
+            <div id="EmployeeColumns" class="row">
+                @*預計foreach*@
+                @*預計使用db關聯傳送圖片sights*@
+                <div class="card ">
+                    @*<img class="card-img-top" src="@Url.Content("~/Images/" + item.ProductID + ".jpg")" />*@
+                    <img class="card-img-top" src="~/source/stay/@Model.Stay_img1" />
+
+                    <div class="card-body">
+                        <h5 class="card-title text-center">
+                            @*夜宿蘭陽藝城 漫遊古味巷陌*@
+                            @*@Model.Journey_Stays.First().StayName*@
+                            @Model.Stay_title
+                        </h5>
+                        <hr />
+                        <p class="card-text">
+                            @*「煙波花時間 – 宜蘭傳藝」坐落於國立傳統藝術中心-宜蘭傳藝園區。以「夜宿蘭陽藝城 漫遊古味巷陌」為概念，讓旅客住得自在、玩得自由、歡聚在傳藝中心，發掘藏在日常裡的文化藝術軌跡，深度感受、傳揚台灣傳統藝術。全區客房建築出自黃聲遠建築師事務所設計，懷舊磨石地、迴廊池塘、涼亭木椅，自由穿梭濃厚閩南式建築中，彷彿穿越到舊時台灣，留下充滿濃厚文化氣息的片刻回憶。
+                                宜蘭縣五結鄉五濱路二段201號
+                                +886-3-9506666  rvta@lakeshore.com.tw*@
+                            @Model.Stay_text
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card col-md-4">
+                    <img class="card-img-top" src="~/source/stay/@Model.Stay_img2" />
+                </div>
+                <div class="card col-md-4">
+                    <img class="card-img-top" src="~/source/stay/@Model.Stay_img3" />
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4">
+
+            <h1 class="section-title px-3">費用說明</h1>
+            <h5 class="mb-4">ExpenseItems</h5>
+            @*帶入db資料*@
+            @Model.ExpenseItems<br>
+            
+            @*小數點去除*@
+            <p>攝影:@Model.Photo.Value.ToString("0")</p>
+            <p>化妝:@Model.MakeUpExpenses.Value.ToString("0")</p>
+            <p>交通:@Model.Transportation.Value.ToString("0")</p>
+            <p>車資:@Model.CarFare.Value.ToString("0")</p>
+            <p>住宿:@Model.StayExpenses.Value.ToString("0")</p>
+            <p>活動:@Model.Activity.Value.ToString("0")</p>
+            <p>食物:@Model.Food.Value.ToString("0")</p>
+
+
+
+            @{
+                //計算總旅程費用
+                var total = @Model.Photo.Value + @Model.MakeUpExpenses.Value + @Model.Transportation.Value + @Model.CarFare.Value + @Model.StayExpenses.Value + @Model.Activity.Value + @Model.Food.Value;
+            }
+            <div style="color:red; font-size:30px">
+                總費用:@total.ToString("0")
+            </div>
+        </div>
+
+        <div class="col-4">
+            <h1 class="section-title px-3">特別備註</h1>
+            <h5 class="mb-4">Remarks</h5>
+
+            @*帶入db資料*@
+            @Model.Remarks<br>
+            <p>＊本行程1人成行。</p>
+            <p>＊本行程貴賓不須支付小費給導遊或司機。</p>
+            <p>＊本行程無提供巴士選位服務，敬請知悉。</p>
+            <p>＊本行程於指定時間準時出發，逾時不候，若因遲到而無法參團，恕不退費，亦不可改期參團。</p>
+            <p>＊線上預約並非保證訂位成功，需以客服人員回覆為準。</p>
+            <p>＊嬰兒(2歲以下)，僅含保險及作業手續費200元，其餘皆不含。</p>
+        </div>
+
+        <div class="col-4">
+            <h1 class="section-title px-3">集合地點</h1>
+            <h5 class="mb-4">AssemblyPlace</h5>
+
+            @*帶入db資料*@
+            @Model.AssemblyPlace<br>
+            <p>多功能展覽區</p>
+            <img width="500" height="500" src="~/source/sights/taipeistation.jpg" /><br>
+        </div>
+
+        <div class="col-12 text-center">
+            <h1 class="section-title px-3">每日行程</h1>
+            <h5 class="mb-4">DailyItinerary</h5>
+
+            @*帶入db資料*@
+            @Model.DailyItinerary<br>
+
+            @*設計按鈕折疊行程*@
+            <input type="button" id="complete" name="longname" value="完整行程" class="btn btn-danger" onclick="toggle2()" />
+            <input type="button" id="shortening" name="shortname" value="精簡行程" class="btn btn-danger" onclick="toggle()" />
+
+            <div id="long">
+                <h5>@Model.JourneyContent</h5>
+            </div>
+
+            <div id="short" style="display:none">
+                <h5>@Model.JourneyShort</h5>
+            </div>
+
+        </div>
+
+
+        <form id="orderjourney" action="/Member/Order" method="post">
+
+            <div class="col-12 text-center">
+                @*按鈕切換古裝選擇女/男*@
+                <input type="button" name="woman" value="古裝選擇-女" class="btn btn-danger" onclick="togglewoman()" />
+                <input type="button" name="man" value="古裝選擇-男" class="btn btn-danger" onclick="toggleman()" />
+
+                @*將Model.Id代入=>/Member/Order*@
+                @*/Member/Journey/3*@
+                @*用form表單傳送資料妝髮服資料回伺服器存session*@
+
+
+                @*用js抓到按鈕點選的圖片(click事件),寫檔名到下面三個隱藏欄位*@
+
+                @*古裝選擇-女服妝髮各3套*@
+                <!--<input type="hidden" value="costume_woman1.jpg" id="costume_wo1" />
+
+                @*古裝選擇-男服妝髮各3套*@
+                <!--<input type="hidden" value="costume_man1.jpg" id="costume_ma1" />
+                <input type="hidden" value="hair_man3.jpg" id="hair_ma3" />-->
+            </div>
+
+
+            <div class="row">
+                @*古裝選擇-女*@
+                <div class="col-4" id="woman">
+                    <h1 class="section-title px-3">古裝選擇-女</h1>
+                    <h5 class="mb-4">Ancientcostume</h5>
+
+                    @*按鈕文字顯示在下方*@
+                    @*設定選好按鈕帶回旅程費用*@
+                    @*radionbutton設計 => 3選1*@
+                    <br>
+
+                    <label class="label" for="cutsom1">
+                        <input id="cutsom1" name="cutsom" type="radio" value="costume_woman1" class="btn-with-img" />
+                        <img width="200" height="300" src="~/source/costume/costume_woman1.jpg" alt="古裝一" />
+                        古裝一
+                    </label>
+
+                    <label class="label" for="cutsom2">
+                        <input id="cutsom2" name="cutsom" type="radio" value="costume_woman2" class="btn-with-img" />
+                        <img width="200" height="300" src="~/source/costume/costume_woman2.jpg" alt="古裝二" />
+                        古裝二
+                    </label>
+
+                    <label class="label" for="cutsom3">
+                        <input id="cutsom3" name="cutsom" type="radio" value="costume_woman3" class="btn-with-img" />
+                        <img width="200" height="300" src="~/source/costume/costume_woman3.jpg" alt="古裝三" />
+                        古裝三
+                    </label>
+                </div>
+                
+                <div class="col-4" id="woman2">
+                    <h1 class="section-title px-3">妝容選擇-女</h1>
+                    <h5 class="mb-4">Ancientcostume-makeup</h5>
+                    <br>
+
+                    <label class="label" for="makeup1">
+                        <input id="makeup1" name="makeup" type="radio" value="makeup_woman1" class="btn-with-img" />
+                        <img width="300" src="~/source/makeup/makeup_woman1.jpg" alt="妝容一" />
+                        妝容一
+                    </label>
+
+                    <label class="label" for="makeup2">
+                        <input id="makeup2" name="makeup" type="radio" value="makeup_woman2" class="btn-with-img" />
+                        <img width="300" src="~/source/makeup/makeup_woman2.jpg" alt="妝容二" />
+                        妝容二
+                    </label>
+
+                    <label class="label" for="makeup3">
+                        <input id="makeup3" name="makeup" type="radio" value="makeup_woman3" class="btn-with-img" />
+                        <img width="300" src="~/source/makeup/makeup_woman3.jpg" alt="妝容三" />
+                        妝容三
+                    </label>
+                </div>
+                
+                <div class="col-4" id="woman3">
+                    <h1 class="section-title px-3">髮型選擇-女</h1>
+                    <h5 class="mb-4">Ancientcostume-hair</h5>
+                    <br />
+
+                    <label class="label" for="hair1">
+                        <input id="hair1" name="hair" type="radio" value="hair_woman1" class="btn-with-img" />
+                        <img width="300" src="~/source/hair/hair_woman1.jpg" alt="髮型一" />
+                        髮型一
+                    </label>
+
+                    <label class="label" for="hair2">
+                        <input id="hair2" name="hair" type="radio" value="hair_woman2" class="btn-with-img" />
+                        <img width="300" src="~/source/hair/hair_woman2.jpg" alt="髮型二" />
+                        髮型二
+                    </label>
+
+                    <label class="label" for="hair3">
+                        <input id="hair3" name="hair" type="radio" value="hair_woman3" class="btn-with-img" />
+                        <img width="300" src="~/source/hair/hair_woman3.jpg" alt="髮型三" />
+                        髮型三
+                    </label>
+                </div>
+            </div>
+
+            <div class="row">
+                @*古裝選擇-男*@
+                <div class="col-4" id="man" style="display:none">
+                    <h1 class="section-title px-3">古裝選擇-男</h1>
+                    <h5 class="mb-4">Ancientcostume</h5>
+
+                    <br>
+
+                    <label class="label" for="cutsom4">
+                        <input id="cutsom4" name="cutsom" type="radio" value="costume_man1" class="btn-with-img" />
+                        <img width="200" height="300" src="~/source/costume/costume_man1.jpg" alt="古裝一" />
+                        古裝一
+                    </label>
+
+                    <label class="label" for="cutsom5">
+                        <input id="cutsom5" name="cutsom" type="radio" value="costume_man2" class="btn-with-img" />
+                        <img width="200" height="300" src="~/source/costume/costume_man2.jpg" alt="古裝二" />
+                        古裝二
+                    </label>
+
+                    <label class="label" for="cutsom6">
+                        <input id="cutsom6" name="cutsom" type="radio" value="costume_man3" class="btn-with-img" />
+                        <img width="200" height="300" src="~/source/costume/costume_man3.jpg" alt="古裝三" />
+                        古裝三
+                    </label>
+                </div>
+
+                <div class="col-4" id="man2" style="display:none">
+                    <h1 class="section-title px-3">妝容選擇-男</h1>
+                    <h5 class="mb-4">Ancientcostume-makeup</h5>
+                    <br />
+
+                    <label class="label" for="makeup4">
+                        <input id="makeup4" name="makeup" type="radio" value="makeup_man1" class="btn-with-img" />
+                        <img width="200" src="~/source/makeup/makeup_man1.jpg" alt="妝容一" />
+                        妝容一
+                    </label>
+
+                    <label class="label" for="makeup5">
+                        <input id="makeup5" name="makeup" type="radio" value="makeup_man2" class="btn-with-img" />
+                        <img width="200" src="~/source/makeup/makeup_man2.jpg" alt="妝容二" />
+                        妝容二
+                    </label>
+
+                    <label class="label" for="makeup6">
+                        <input id="makeup6" name="makeup" type="radio" value="makeup_man3" class="btn-with-img" />
+                        <img width="200" src="~/source/makeup/makeup_man3.jpg" alt="妝容三" />
+                        妝容三
+                    </label>
+                </div>
+                
+                <div class="col-4" id="man3" style="display:none">
+                    <h1 class="section-title px-3">髮型選擇-男</h1>
+                    <h5 class="mb-4">Ancientcostume-hair</h5>
+                    <br />
+
+                    <label class="label" for="hair4">
+                        <input id="hair4" name="hair" type="radio" value="hair_man1" class="btn-with-img" />
+                        <img width="200" src="~/source/hair/hair_man1.jpg" alt="髮型一" />
+                        髮型一
+                    </label>
+
+                    <label class="label" for="hair5">
+                        <input id="hair5" name="hair" type="radio" value="hair_man2" class="btn-with-img" />
+                        <img width="200" src="~/source/hair/hair_man2.jpg" alt="髮型二" />
+                        髮型二
+                    </label>
+
+                    <label class="label" for="hair6">
+                        <input id="hair6" name="hair" type="radio" value="hair_man3" class="btn-with-img" />
+                        <img width="200" src="~/source/hair/hair_man3.jpg" alt="髮型三" />
+                        髮型三
+                    </label>
+                </div>
+            </div>
+
+            <br />
+
+        </form>
+    </div>
+
+</div>
+<!-- Explore Tour Start -->
+
+
+@section MyJs{
+    <script>
+        // 滾動頁面，導航欄顯示、隱藏效果
+
+        //window.pageYOffset 會返回當前頁面的垂直滾動位置
+        let prevScrollPos = window.pageYOffset;
+        const navbar = document.getElementById("journtynav");
+
+        window.onscroll = function () {
+
+            let currentScrollPos = window.pageYOffset;
+
+            // 如果滾動位置小於0，導航欄顯示；否則隱藏(上一頁滾動位置<目前滾動位置)
+            if (prevScrollPos < currentScrollPos) {
+                // 滾動向上，隱藏導航欄
+                navbar.style.top = "0";
+            } else {
+                // 滾動向下，顯示導航欄
+                navbar.style.top = "-72px"; /* 導航欄的高度為 70px，大於可隱藏*/
+            }
+            prevScrollPos = currentScrollPos;
+        };
+
+        //在form外使用submit
+        function submitForm() {
+            // 獲取表單元素
+            var form = document.getElementById("orderjourney");
+
+            // 提交表單
+            form.submit();
+        }
+
+        // 切換精簡行程
+        function toggle() {
+            document.getElementById('short').style.display = 'block'; // 顯示行程資訊
+            document.getElementById('long').style.display = 'none'; // 隱藏行程資訊
+        }
+
+        // 切換完整行程
+        function toggle2() {
+            document.getElementById('long').style.display = 'block'; // 顯示行程資訊
+            document.getElementById('short').style.display = 'none'; // 隱藏行程資訊
+        }
+
+        // 切換古裝選擇-女
+        function togglewoman() {
+            document.getElementById('woman').style.display = 'block';
+            document.getElementById('woman2').style.display = 'block';
+            document.getElementById('woman3').style.display = 'block';
+            document.getElementById('man').style.display = 'none';
+            document.getElementById('man2').style.display = 'none';
+            document.getElementById('man3').style.display = 'none';
+        }
+
+        // 切換古裝選擇-男
+        function toggleman() {
+            document.getElementById('man').style.display = 'block';
+            document.getElementById('man2').style.display = 'block';
+            document.getElementById('man3').style.display = 'block';
+            document.getElementById('woman').style.display = 'none';
+            document.getElementById('woman2').style.display = 'none';
+            document.getElementById('woman3').style.display = 'none';
+        }
+
+
+
+
+        /*旅程行事曆*/
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                },
+                initialDate: '@(DateTime.Now.ToString("yyyy-MM-dd"))',
+                editable: true,
+                navLinks: true, // can click day/week names to navigate views
+                dayMaxEvents: true, // allow "more" link when too many events
+                events: {
+                    url: '/Employee/GetJourneyEvents',
+                    failure: function () {
+                        document.getElementById('script-warning').style.display = 'block'
+                    }
+                }
+            });
+
+            calendar.render();
+
+            calendar.setOption('locale', "zh-TW");
+        });
+    </script>
+} 

@@ -1,0 +1,42 @@
+﻿@model List<Ancient_costume.Models.Journey_Stays>
+
+@{
+    ViewBag.Title = "Stay";
+}
+
+
+<div class="container">
+    <h2>訂房</h2>
+    <h4>Stays</h4>
+
+    <div class="row g-4">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-md-4 col-lg-12">
+                <!--card獨立不影響圖片-->
+                <div class="card">
+                    <!--放card-body上填滿card-->
+                    <a href="" target="_blank">
+                        <img class="img-fluid" src="~/source/stay/@item.StayImage" style="width:200px" />
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title text-center">@item.StayName</h5>
+                        <hr />
+                        <p class="card-text">@item.StayInfo</p>
+                        <a class="btn btn-info" href="" target="_blank">詳細資訊...</a>
+                    </div>
+                </div>
+
+            </div>
+        }
+
+
+
+
+    </div>
+</div>
+
+
+<p>@Html.ActionLink("Back to List", "Index")</p>
+</div>

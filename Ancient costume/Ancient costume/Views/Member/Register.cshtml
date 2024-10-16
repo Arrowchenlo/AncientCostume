@@ -1,0 +1,70 @@
+﻿
+
+@{
+    ViewBag.Title = "Register";
+}
+
+
+<div class="container">
+    <h1>註冊會員</h1>
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+    <form action="/Member/Register" method="post" class="form-horizontal form-without-legend" role="form">
+
+        @*<div class="form-group">
+                <label class="col-lg-2 control-label" for="first-name">User Name <span class="require">*</span></label>
+                <div class="col-lg-8">
+                    <input type="text" class="form-control">
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            <label class="col-lg-2 control-label" for="name">UserName <span class="require">*</span></label>
+            <div class="col-lg-8">
+                <input type="text" name="UserName" id="UserName" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-lg-2 control-label" for="name">Password <span class="require">*</span></label>
+            <div class="col-lg-8">
+                <input type="password" name="Password" id="Password" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-lg-2 control-label" for="name">Phone</label>
+            <div class="col-lg-8">
+                <input type="text" name="Phone" id="Phone" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-lg-2 control-label" for="name">Email</label>
+            <div class="col-lg-8">
+                <input type="text" name="Email" id="Email" class="form-control" />
+            </div>
+        </div>
+
+        <br />
+
+        <div class="row">
+            <div class="col-lg-8 col-md-offset-2 padding-left-0 padding-top-20">
+                <button class="btn btn-primary" type="submit">註冊</button>
+                <button class="btn btn-primary" id="autoinput" type="button">自動填值</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section MyJs {
+    <script>
+        $(document).ready(function () {
+            $("#autoinput").click(function () {
+                $("#UserName").val("jacky");
+                $("#Password").val("12345");
+                $("#Phone").val("0912345678");
+                $("#Email").val("sara15560132@gmail.com");
+            });
+        });
+    </script>
+}
