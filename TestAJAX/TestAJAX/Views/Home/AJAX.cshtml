@@ -1,0 +1,242 @@
+﻿@model IEnumerable<TestAJAX.Models.Order>
+
+@{
+    ViewBag.Title = "AJAX";
+}
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+<div class="container">
+    <h2>AJAX</h2>
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <label for="OrderId">會員ID</label>
+            <select id="OrderId">
+                <option value="">選擇OrderIdID</option>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <label for="CustomerId">顧客ID</label>
+            <select id="CustomerId">
+                <option>選擇CustomerID</option>
+            </select>
+        </div>
+
+    </div>
+
+    <br />
+    <br />
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <label for="orderdetails">訂單明細</label>
+            <select id="orderdetails">
+                <option>選擇訂單明細</option>
+            </select>
+        </div>
+
+        <div class="col-md-6">
+            <label for="customerdetails">顧客明細</label>
+            <select id="customerdetails">
+                <option>選擇顧客明細</option>
+            </select>
+        </div>
+    </div>
+
+
+    <br />
+    <br />
+
+    <table class="table" border="1">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequiredDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShippedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipVia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Freight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipRegion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipPostalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShipCountry)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequiredDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShippedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipVia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Freight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipCity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipRegion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipPostalCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShipCountry)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+
+<script src="~/Scripts/jquery-3.7.0.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        //顯示OrderID
+        $.ajax({
+            url: "/Home/Dropdown",
+            type: "GET",
+            success: function (data) {
+                var orderid = $("#OrderId");//將OrderId的值取出來給宣告的orderid
+                $.each(data, function (index, value) {//index是索引值，value是值
+                    orderid.append($("<option>", {
+                        value: value.OrderID,//值裡面單獨取出OrderID
+                        text: value.OrderID //顯示在畫面上的值
+                    }));
+                });
+            }
+        });
+
+        //選擇OrderID後更新OrderDetails
+        $("#OrderId").change(function () {
+            var orderid = $(this).val();//取得OrderId的值給宣告的orderid
+            var orderdetails = $("#orderdetails");//取得orderdetails下拉選單，記得要加#號
+            orderdetails.empty();//清空之前下拉選單
+
+            //加入下拉選單的第一個選項
+            orderdetails.append($("<option>", {
+                text: "請選擇訂單明細"
+            }));
+
+            //如果OrderID有值，則更新OrderDetails
+            if (orderid!= "") {
+                $.ajax({
+                    url: "/Home/GetDeopdown",
+                    type: "GET",
+                    data: { orderid: orderid },
+                    success: function (data) {
+                        $.each(data, function (index, value) {
+                            orderdetails.append($("<option>", {
+                                text: "產品編號:" + value.ProductID + " 價格:" + value.UnitPrice + " 數量:" + value.Quantity + " 折扣:" + value.Discount
+                            }));
+                        });
+                    }
+                });
+            }
+        });
+
+        //顯示CustomerID
+        $.ajax({
+            url: "/Home/Customer",
+            type: "GET",
+            success: function (data) {
+                var customerid = $("#CustomerId")
+                $.each(data, function (index, value) {
+                    customerid.append($("<option>", {
+                        text: value.CustomerID
+                    }));
+                });
+            }
+        });
+
+        //選擇CustomerID後更新CustomerDetails
+        $("#CustomerId").change(function () {
+            var CustomerID = $(this).val();
+            var CustomerDetails = $("#customerdetails");
+            CustomerDetails.empty();
+
+            CustomerDetails.append($("<option>", {
+                text: "請選擇顧客明細"
+            }));
+
+            if (CustomerID!= "") {
+                $.ajax({
+                    url: "/Home/GetCustomer",
+                    type: "GET",
+                    data: { CustomerID: CustomerID },//CustomerID的值作為一個屬性傳遞給data物件。這個data物件將作為AJAX請求的參數，傳遞給伺服器端的控制器方法。
+                    success: function (data) {
+                        $.each(data, function (index, value) {
+                            CustomerDetails.append($("<option>", {
+                                text: " 公司名稱:" + value.CompanyName + " 聯絡人:" + value.ContactName + " 聯絡人職務:" + value.ContactTitle + " 地址:" + value.Address
+                            }));
+                        });
+                    }
+                });
+            }
+        });
+    });
+</script>
+
