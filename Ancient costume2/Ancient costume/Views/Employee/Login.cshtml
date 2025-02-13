@@ -1,0 +1,53 @@
+﻿@model Ancient_costume.ViewModel.LoginViewEmployees
+
+
+@{
+    ViewBag.Title = "Login";
+}
+
+
+<div class="container">
+
+    <div>
+        <h1>員工登入</h1>
+        <div class="content-form-page">
+            @*彙整顯示帳號密碼錯誤*@
+            @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+            @*form表單新增method="post",action=/Account/Login*@
+            <form action="/Employee/Login" method="post" role="form" class="form-horizontal form-without-legend">
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="first-name">User Name <span class="require">*</span></label>
+                    <div class="col-lg-2">  
+                        @*<input type="text" id="first-name" name="username" class="form-control">*@
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label" for="last-name">Password <span class="require">*</span></label>
+                    <div class="col-lg-2">
+                        @*<input type="text" id="first-name" name="password" class="form-control">*@
+                        <!--更改PasswordFor=>隱藏密碼-->
+                        @Html.PasswordFor(model => model.Password, new { @class = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>  
+                </div>
+                    <br>
+                <div class="row">
+                    <div class="col-lg-8 col-md-offset-2 padding-left-0 padding-top-20">
+                        <button class="btn btn-primary" type="submit">Login</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+
+</div>
+
+@section MyJs
+    {
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}

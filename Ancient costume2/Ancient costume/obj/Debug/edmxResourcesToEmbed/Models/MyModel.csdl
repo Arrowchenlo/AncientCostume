@@ -1,0 +1,528 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AcDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="AcDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Journey_Contact" EntityType="AcDBModel.Journey_Contact" />
+    <EntitySet Name="Journey_Grouptype" EntityType="AcDBModel.Journey_Grouptype" />
+    <EntitySet Name="Journey_Travellertype" EntityType="AcDBModel.Journey_Travellertype" />
+    <EntitySet Name="Order_Customerinfo" EntityType="AcDBModel.Order_Customerinfo" />
+    <EntitySet Name="Order_Details" EntityType="AcDBModel.Order_Details" />
+    <EntitySet Name="Order_Statusrecord" EntityType="AcDBModel.Order_Statusrecord" />
+    <EntitySet Name="Employees" EntityType="AcDBModel.Employee" />
+    <EntitySet Name="Journey_costumestyle" EntityType="AcDBModel.Journey_costumestyle" />
+    <EntitySet Name="Members" EntityType="AcDBModel.Member" />
+    <EntitySet Name="Journey_makeupstyle" EntityType="AcDBModel.Journey_makeupstyle" />
+    <EntitySet Name="Journey_Ancientcostume" EntityType="AcDBModel.Journey_Ancientcostume" />
+    <AssociationSet Name="FK_Journey_costumestyle_Journey_Ancientcostume" Association="AcDBModel.FK_Journey_costumestyle_Journey_Ancientcostume">
+      <End Role="Journey_Ancientcostume" EntitySet="Journey_Ancientcostume" />
+      <End Role="Journey_costumestyle" EntitySet="Journey_costumestyle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Journey_makeupstyle_Journey_Ancientcostume" Association="AcDBModel.FK_Journey_makeupstyle_Journey_Ancientcostume">
+      <End Role="Journey_Ancientcostume" EntitySet="Journey_Ancientcostume" />
+      <End Role="Journey_makeupstyle" EntitySet="Journey_makeupstyle" />
+    </AssociationSet>
+    <EntitySet Name="Journey_hairstyle" EntityType="AcDBModel.Journey_hairstyle" />
+    <AssociationSet Name="FK_Journey_hairstyle_Journey_Ancientcostume" Association="AcDBModel.FK_Journey_hairstyle_Journey_Ancientcostume">
+      <End Role="Journey_Ancientcostume" EntitySet="Journey_Ancientcostume" />
+      <End Role="Journey_hairstyle" EntitySet="Journey_hairstyle" />
+    </AssociationSet>
+    <EntitySet Name="Favorites" EntityType="AcDBModel.Favorite" />
+    <AssociationSet Name="FK_Favorite_Members" Association="AcDBModel.FK_Favorite_Members">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="Favorite" EntitySet="Favorites" />
+    </AssociationSet>
+    <EntitySet Name="Journey_Stays" EntityType="AcDBModel.Journey_Stays" />
+    <EntitySet Name="Journeys" EntityType="AcDBModel.Journey" />
+    <AssociationSet Name="FK_Favorite_Journey" Association="AcDBModel.FK_Favorite_Journey">
+      <End Role="Journey" EntitySet="Journeys" />
+      <End Role="Favorite" EntitySet="Favorites" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Journey_Ancientcostume_Journey" Association="AcDBModel.FK_Journey_Ancientcostume_Journey">
+      <End Role="Journey" EntitySet="Journeys" />
+      <End Role="Journey_Ancientcostume" EntitySet="Journey_Ancientcostume" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Journey_Grouptype_Journey" Association="AcDBModel.FK_Journey_Grouptype_Journey">
+      <End Role="Journey" EntitySet="Journeys" />
+      <End Role="Journey_Grouptype" EntitySet="Journey_Grouptype" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Journey_Journey_Stays" Association="AcDBModel.FK_Journey_Journey_Stays">
+      <End Role="Journey_Stays" EntitySet="Journey_Stays" />
+      <End Role="Journey" EntitySet="Journeys" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Journey_Travellertype_Journey" Association="AcDBModel.FK_Journey_Travellertype_Journey">
+      <End Role="Journey" EntitySet="Journeys" />
+      <End Role="Journey_Travellertype" EntitySet="Journey_Travellertype" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Details_Journey" Association="AcDBModel.FK_Order_Details_Journey">
+      <End Role="Journey" EntitySet="Journeys" />
+      <End Role="Order_Details" EntitySet="Order_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderContact_Journey" Association="AcDBModel.FK_OrderContact_Journey">
+      <End Role="Journey" EntitySet="Journeys" />
+      <End Role="Journey_Contact" EntitySet="Journey_Contact" />
+    </AssociationSet>
+    <EntitySet Name="Orders" EntityType="AcDBModel.Order" />
+    <AssociationSet Name="FK_Order_Employees" Association="AcDBModel.FK_Order_Employees">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Members" Association="AcDBModel.FK_Order_Members">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customerinfo_Order" Association="AcDBModel.FK_Customerinfo_Order">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="Order_Customerinfo" EntitySet="Order_Customerinfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_Details_Order" Association="AcDBModel.FK_Order_Details_Order">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="Order_Details" EntitySet="Order_Details" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Journey_Contact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Customer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MakeupArtist" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Photographer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Contact" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Message" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InstantMessage" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LineGroup" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="JourneyID" Type="Int32" />
+    <NavigationProperty Name="Journey" Relationship="AcDBModel.FK_OrderContact_Journey" FromRole="Journey_Contact" ToRole="Journey" />
+  </EntityType>
+  <EntityType Name="Journey_Grouptype">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="JourneyID" Type="Int32" />
+    <Property Name="Stock" Type="Int32" />
+    <Property Name="Maxstock" Type="Int32" />
+    <Property Name="Discount" Type="Int32" />
+    <Property Name="Departuredate" Type="DateTime" Precision="3" />
+    <Property Name="Ruturndate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Journey" Relationship="AcDBModel.FK_Journey_Grouptype_Journey" FromRole="Journey_Grouptype" ToRole="Journey" />
+  </EntityType>
+  <EntityType Name="Journey_Travellertype">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="JourneyID" Type="Int32" />
+    <Property Name="People" Type="Int32" />
+    <Property Name="Bed_count" Type="Int32" />
+    <Property Name="Discount" Type="Int32" />
+    <NavigationProperty Name="Journey" Relationship="AcDBModel.FK_Journey_Travellertype_Journey" FromRole="Journey_Travellertype" ToRole="Journey" />
+  </EntityType>
+  <EntityType Name="Order_Customerinfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IDnumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Creditcard" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="People" Type="Int32" />
+    <Property Name="Eatinghabits" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OrderID" Type="Int32" />
+    <NavigationProperty Name="Order" Relationship="AcDBModel.FK_Customerinfo_Order" FromRole="Order_Customerinfo" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Order_Details">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Customersname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="E_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Paymentmethod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Deposit" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Orderfullamount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Paymentdate" Type="DateTime" Precision="3" />
+    <Property Name="Servicebase" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Departuredate" Type="DateTime" Precision="3" />
+    <Property Name="Returndate" Type="DateTime" Precision="3" />
+    <Property Name="Journeyname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Orderdate" Type="DateTime" Precision="3" />
+    <Property Name="Groupnumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Orderstate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OrderID" Type="Int32" />
+    <Property Name="JourneyID" Type="Int32" />
+    <NavigationProperty Name="Journey" Relationship="AcDBModel.FK_Order_Details_Journey" FromRole="Order_Details" ToRole="Journey" />
+    <NavigationProperty Name="Order" Relationship="AcDBModel.FK_Order_Details_Order" FromRole="Order_Details" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Order_Statusrecord">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Oldstatus" Type="Int32" />
+    <Property Name="Newstatus" Type="Int32" />
+    <Property Name="Updatetime" Type="DateTime" Precision="3" />
+    <Property Name="OrderID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Position" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Orders" Relationship="AcDBModel.FK_Order_Employees" FromRole="Employee" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Journey_costumestyle">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Journey_AncientcostumeID" Type="Int32" />
+    <Property Name="Style1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Style2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Style3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Journey_Ancientcostume" Relationship="AcDBModel.FK_Journey_costumestyle_Journey_Ancientcostume" FromRole="Journey_costumestyle" ToRole="Journey_Ancientcostume" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Favorites" Relationship="AcDBModel.FK_Favorite_Members" FromRole="Member" ToRole="Favorite" />
+    <NavigationProperty Name="Orders" Relationship="AcDBModel.FK_Order_Members" FromRole="Member" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="Journey_makeupstyle">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Style1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Style2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Style3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Journey_AncientcostumeID" Type="Int32" />
+    <NavigationProperty Name="Journey_Ancientcostume" Relationship="AcDBModel.FK_Journey_makeupstyle_Journey_Ancientcostume" FromRole="Journey_makeupstyle" ToRole="Journey_Ancientcostume" />
+  </EntityType>
+  <EntityType Name="Journey_Ancientcostume">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JourneyID" Type="Int32" />
+    <Property Name="Hairstyle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Makeupstyle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Costumestyle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Journey_costumestyle" Relationship="AcDBModel.FK_Journey_costumestyle_Journey_Ancientcostume" FromRole="Journey_Ancientcostume" ToRole="Journey_costumestyle" />
+    <NavigationProperty Name="Journey_makeupstyle" Relationship="AcDBModel.FK_Journey_makeupstyle_Journey_Ancientcostume" FromRole="Journey_Ancientcostume" ToRole="Journey_makeupstyle" />
+    <NavigationProperty Name="Journey_hairstyle" Relationship="AcDBModel.FK_Journey_hairstyle_Journey_Ancientcostume" FromRole="Journey_Ancientcostume" ToRole="Journey_hairstyle" />
+    <NavigationProperty Name="Journey" Relationship="AcDBModel.FK_Journey_Ancientcostume_Journey" FromRole="Journey_Ancientcostume" ToRole="Journey" />
+  </EntityType>
+  <Association Name="FK_Journey_costumestyle_Journey_Ancientcostume">
+    <End Type="AcDBModel.Journey_Ancientcostume" Role="Journey_Ancientcostume" Multiplicity="0..1" />
+    <End Type="AcDBModel.Journey_costumestyle" Role="Journey_costumestyle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Journey_Ancientcostume">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Journey_costumestyle">
+        <PropertyRef Name="Journey_AncientcostumeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Journey_makeupstyle_Journey_Ancientcostume">
+    <End Type="AcDBModel.Journey_Ancientcostume" Role="Journey_Ancientcostume" Multiplicity="0..1" />
+    <End Type="AcDBModel.Journey_makeupstyle" Role="Journey_makeupstyle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Journey_Ancientcostume">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Journey_makeupstyle">
+        <PropertyRef Name="Journey_AncientcostumeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Journey_hairstyle">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Journey_AncientcostumeID" Type="Int32" />
+    <Property Name="Style1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Style2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Style3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Journey_Ancientcostume" Relationship="AcDBModel.FK_Journey_hairstyle_Journey_Ancientcostume" FromRole="Journey_hairstyle" ToRole="Journey_Ancientcostume" />
+  </EntityType>
+  <Association Name="FK_Journey_hairstyle_Journey_Ancientcostume">
+    <End Type="AcDBModel.Journey_Ancientcostume" Role="Journey_Ancientcostume" Multiplicity="0..1" />
+    <End Type="AcDBModel.Journey_hairstyle" Role="Journey_hairstyle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Journey_Ancientcostume">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Journey_hairstyle">
+        <PropertyRef Name="Journey_AncientcostumeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Favorite">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberId" Type="Int32" />
+    <Property Name="JourneyId" Type="Int32" />
+    <NavigationProperty Name="Member" Relationship="AcDBModel.FK_Favorite_Members" FromRole="Favorite" ToRole="Member" />
+    <NavigationProperty Name="Journey" Relationship="AcDBModel.FK_Favorite_Journey" FromRole="Favorite" ToRole="Journey" />
+  </EntityType>
+  <Association Name="FK_Favorite_Members">
+    <End Type="AcDBModel.Member" Role="Member" Multiplicity="0..1" />
+    <End Type="AcDBModel.Favorite" Role="Favorite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Favorite">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Journey_Stays">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StayName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StayImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="StayInfo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Num_of_bed" Type="Int32" />
+    <Property Name="Max_of_exlra_prople" Type="Int32" />
+    <Property Name="Discount" Type="Int32" />
+    <NavigationProperty Name="Journeys" Relationship="AcDBModel.FK_Journey_Journey_Stays" FromRole="Journey_Stays" ToRole="Journey" />
+  </EntityType>
+  <EntityType Name="Journey">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JourneyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="JourneyDate" Type="DateTime" Precision="0" />
+    <Property Name="JourneyContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JourneyShort" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sights" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Stay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Stay_img1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Stay_img2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Stay_img3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Stay_title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Stay_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ExpenseItems" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AssemblyPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DailyItinerary" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EditImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Sights_img1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Sights_img2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Sights_img3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Sights_title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Sights_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Journey_StaysId" Type="Int32" />
+    <Property Name="TraveItems" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MakeUpExpenses" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Photo" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Transportation" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="StayExpenses" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Activity" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CarFare" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Food" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="Favorites" Relationship="AcDBModel.FK_Favorite_Journey" FromRole="Journey" ToRole="Favorite" />
+    <NavigationProperty Name="Journey_Ancientcostume" Relationship="AcDBModel.FK_Journey_Ancientcostume_Journey" FromRole="Journey" ToRole="Journey_Ancientcostume" />
+    <NavigationProperty Name="Journey_Grouptype" Relationship="AcDBModel.FK_Journey_Grouptype_Journey" FromRole="Journey" ToRole="Journey_Grouptype" />
+    <NavigationProperty Name="Journey_Stays" Relationship="AcDBModel.FK_Journey_Journey_Stays" FromRole="Journey" ToRole="Journey_Stays" />
+    <NavigationProperty Name="Journey_Travellertype" Relationship="AcDBModel.FK_Journey_Travellertype_Journey" FromRole="Journey" ToRole="Journey_Travellertype" />
+    <NavigationProperty Name="Order_Details" Relationship="AcDBModel.FK_Order_Details_Journey" FromRole="Journey" ToRole="Order_Details" />
+    <NavigationProperty Name="Journey_Contact" Relationship="AcDBModel.FK_OrderContact_Journey" FromRole="Journey" ToRole="Journey_Contact" />
+  </EntityType>
+  <Association Name="FK_Favorite_Journey">
+    <End Type="AcDBModel.Journey" Role="Journey" Multiplicity="0..1" />
+    <End Type="AcDBModel.Favorite" Role="Favorite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Journey">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Favorite">
+        <PropertyRef Name="JourneyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Journey_Ancientcostume_Journey">
+    <End Type="AcDBModel.Journey" Role="Journey" Multiplicity="0..1" />
+    <End Type="AcDBModel.Journey_Ancientcostume" Role="Journey_Ancientcostume" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Journey">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Journey_Ancientcostume">
+        <PropertyRef Name="JourneyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Journey_Grouptype_Journey">
+    <End Type="AcDBModel.Journey" Role="Journey" Multiplicity="0..1" />
+    <End Type="AcDBModel.Journey_Grouptype" Role="Journey_Grouptype" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Journey">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Journey_Grouptype">
+        <PropertyRef Name="JourneyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Journey_Journey_Stays">
+    <End Type="AcDBModel.Journey_Stays" Role="Journey_Stays" Multiplicity="0..1" />
+    <End Type="AcDBModel.Journey" Role="Journey" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Journey_Stays">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Journey">
+        <PropertyRef Name="Journey_StaysId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Journey_Travellertype_Journey">
+    <End Type="AcDBModel.Journey" Role="Journey" Multiplicity="0..1" />
+    <End Type="AcDBModel.Journey_Travellertype" Role="Journey_Travellertype" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Journey">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Journey_Travellertype">
+        <PropertyRef Name="JourneyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Details_Journey">
+    <End Type="AcDBModel.Journey" Role="Journey" Multiplicity="0..1" />
+    <End Type="AcDBModel.Order_Details" Role="Order_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Journey">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order_Details">
+        <PropertyRef Name="JourneyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderContact_Journey">
+    <End Type="AcDBModel.Journey" Role="Journey" Multiplicity="0..1" />
+    <End Type="AcDBModel.Journey_Contact" Role="Journey_Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Journey">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Journey_Contact">
+        <PropertyRef Name="JourneyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberID" Type="Int32" />
+    <Property Name="EmployeeID" Type="Int32" />
+    <Property Name="Customersname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="E_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TwId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SelectPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Selectfood" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Selectchild" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Message" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="JourneyId" Type="Int32" />
+    <Property Name="JourneyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="JourneyContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Sights" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Stay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ExpenseItems" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MakeUpExpenses" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Transportation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CarFare" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="StayExpenses" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Activity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Food" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AssemblyPlace" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DailyItinerary" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="custom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="makeup" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="hair" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OrderDate" Type="DateTime" Precision="0" />
+    <Property Name="RequiredDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Employee" Relationship="AcDBModel.FK_Order_Employees" FromRole="Order" ToRole="Employee" />
+    <NavigationProperty Name="Member" Relationship="AcDBModel.FK_Order_Members" FromRole="Order" ToRole="Member" />
+    <NavigationProperty Name="Order_Customerinfo" Relationship="AcDBModel.FK_Customerinfo_Order" FromRole="Order" ToRole="Order_Customerinfo" />
+    <NavigationProperty Name="Order_Details" Relationship="AcDBModel.FK_Order_Details_Order" FromRole="Order" ToRole="Order_Details" />
+  </EntityType>
+  <Association Name="FK_Order_Employees">
+    <End Type="AcDBModel.Employee" Role="Employee" Multiplicity="0..1" />
+    <End Type="AcDBModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Members">
+    <End Type="AcDBModel.Member" Role="Member" Multiplicity="0..1" />
+    <End Type="AcDBModel.Order" Role="Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="MemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customerinfo_Order">
+    <End Type="AcDBModel.Order" Role="Order" Multiplicity="0..1" />
+    <End Type="AcDBModel.Order_Customerinfo" Role="Order_Customerinfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order_Customerinfo">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_Details_Order">
+    <End Type="AcDBModel.Order" Role="Order" Multiplicity="0..1" />
+    <End Type="AcDBModel.Order_Details" Role="Order_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Order_Details">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,88 @@
+﻿@model List<Ancient_costume.Models.Journey>
+
+@using Ancient_costume.Models
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section MyCss{
+
+}
+
+<!-- Explore Tour Start -->
+<div class="container-fluid ExploreTour py-5">
+    <div class="container py-5">
+        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+            <h1 class="section-title px-3">管理行程</h1>
+            <h5 class="mb-4">Make Journey</h5>
+        </div>
+
+        @*使用Id查詢旅程
+          設置前往訂單,新增行程按鈕
+        *@
+    <div class="tab-class text-center">
+
+        @using (Html.BeginForm("Inquire", "Employee", FormMethod.Get, new { @class = "form-inline" }))
+        {
+            @**@
+
+            <div class="row">
+                <div class="col-md-1">
+                    <label for="textid"><strong>Id查詢行程</strong></label>
+                </div>
+                <div class="col-md-2">
+                    @Html.TextBox("id", null, new { @class = "form-control", name = "textid" })
+                </div>
+                <div class="col-md-2">
+                    <input type="submit" class="btn btn-primary" value="查詢" />
+                    @Html.ActionLink("回總旅程", "Index", null, new { @class = "btn btn-primary" })
+                </div>
+                <div class="col-md-2">
+                    @Html.ActionLink("前往訂單", "Orderinfo", null, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("新增行程", "Create", null, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        }
+
+        <br />
+
+        <hr>
+
+        @*讀取資料庫Journey-table-Id顯示旅程，帶入/Employee/Journey/
+          並將每個旅程行程增加刪除按鈕,將Id帶入Delete,Edit方法
+        *@
+        <div class="tab-content">
+
+            <div id="NationalTab-1" class="tab-pane fade show p-0 active">
+                <div class="row g-4">
+
+                    @*引用model-帶入DB,ex.Id=>3,5,6,8,9,11,13,15,16*@
+                    @foreach (Journey item in Model)  //g.find(gk=>gk.key =="台灣")
+                    {
+                        <div class="col-md-6 col-lg-4">
+                            <div class="national-item" onclick="location.href='/Employee/Journey/@item.Id'">
+                                <img src="/source/sights/@item.EditImage" class="img-fluid w-100 rounded" alt="Image">
+                                <div class="national-content">
+                                    <div class="national-info">
+                                        <h5 class="text-white text-uppercase mb-2">@item.JourneyName @item.Id</h5>
+
+                                        @*將item.Id帶入Delete*@
+                                        @Html.ActionLink("刪除行程", "Delete", new { id = item.Id }, new { @class = "btn btn-primary" })
+                                        @Html.ActionLink("修改行程", "Edit", new { id = item.Id }, new { @class = "btn btn-primary" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- Explore Tour Start -->
+
+@section MyJs{
+
+}

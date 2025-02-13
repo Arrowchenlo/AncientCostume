@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AcDBModelStoreContainer" CdmEntityContainer="AcDBEntities">
+    <EntitySetMapping Name="Journey_Contact">
+      <EntityTypeMapping TypeName="AcDBModel.Journey_Contact">
+        <MappingFragment StoreEntitySet="Journey_Contact">
+          <ScalarProperty Name="JourneyID" ColumnName="JourneyID" />
+          <ScalarProperty Name="LineGroup" ColumnName="LineGroup" />
+          <ScalarProperty Name="InstantMessage" ColumnName="InstantMessage" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Photographer" ColumnName="Photographer" />
+          <ScalarProperty Name="MakeupArtist" ColumnName="MakeupArtist" />
+          <ScalarProperty Name="Customer" ColumnName="Customer" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Journey_Grouptype">
+      <EntityTypeMapping TypeName="AcDBModel.Journey_Grouptype">
+        <MappingFragment StoreEntitySet="Journey_Grouptype">
+          <ScalarProperty Name="Ruturndate" ColumnName="Ruturndate" />
+          <ScalarProperty Name="Departuredate" ColumnName="Departuredate" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Maxstock" ColumnName="Maxstock" />
+          <ScalarProperty Name="Stock" ColumnName="Stock" />
+          <ScalarProperty Name="JourneyID" ColumnName="JourneyID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Journey_Travellertype">
+      <EntityTypeMapping TypeName="AcDBModel.Journey_Travellertype">
+        <MappingFragment StoreEntitySet="Journey_Travellertype">
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Bed_count" ColumnName="Bed_count" />
+          <ScalarProperty Name="People" ColumnName="People" />
+          <ScalarProperty Name="JourneyID" ColumnName="JourneyID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order_Customerinfo">
+      <EntityTypeMapping TypeName="AcDBModel.Order_Customerinfo">
+        <MappingFragment StoreEntitySet="Order_Customerinfo">
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="Eatinghabits" ColumnName="Eatinghabits" />
+          <ScalarProperty Name="People" ColumnName="People" />
+          <ScalarProperty Name="Creditcard" ColumnName="Creditcard" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="IDnumber" ColumnName="IDnumber" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order_Details">
+      <EntityTypeMapping TypeName="AcDBModel.Order_Details">
+        <MappingFragment StoreEntitySet="Order_Details">
+          <ScalarProperty Name="JourneyID" ColumnName="JourneyID" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="Orderstate" ColumnName="Orderstate" />
+          <ScalarProperty Name="Groupnumber" ColumnName="Groupnumber" />
+          <ScalarProperty Name="Orderdate" ColumnName="Orderdate" />
+          <ScalarProperty Name="Journeyname" ColumnName="Journeyname" />
+          <ScalarProperty Name="Returndate" ColumnName="Returndate" />
+          <ScalarProperty Name="Departuredate" ColumnName="Departuredate" />
+          <ScalarProperty Name="Servicebase" ColumnName="Servicebase" />
+          <ScalarProperty Name="Paymentdate" ColumnName="Paymentdate" />
+          <ScalarProperty Name="Orderfullamount" ColumnName="Orderfullamount" />
+          <ScalarProperty Name="Deposit" ColumnName="Deposit" />
+          <ScalarProperty Name="Paymentmethod" ColumnName="Paymentmethod" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="E_mail" ColumnName="E-mail" />
+          <ScalarProperty Name="Customersname" ColumnName="Customersname" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order_Statusrecord">
+      <EntityTypeMapping TypeName="AcDBModel.Order_Statusrecord">
+        <MappingFragment StoreEntitySet="Order_Statusrecord">
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="Updatetime" ColumnName="Updatetime" />
+          <ScalarProperty Name="Newstatus" ColumnName="Newstatus" />
+          <ScalarProperty Name="Oldstatus" ColumnName="Oldstatus" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="AcDBModel.Employee">
+        <MappingFragment StoreEntitySet="Employees">
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Journey_costumestyle">
+      <EntityTypeMapping TypeName="AcDBModel.Journey_costumestyle">
+        <MappingFragment StoreEntitySet="Journey_costumestyle">
+          <ScalarProperty Name="Style3" ColumnName="Style3" />
+          <ScalarProperty Name="Style2" ColumnName="Style2" />
+          <ScalarProperty Name="Style1" ColumnName="Style1" />
+          <ScalarProperty Name="Journey_AncientcostumeID" ColumnName="Journey_AncientcostumeID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="AcDBModel.Member">
+        <MappingFragment StoreEntitySet="Members">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Journey_makeupstyle">
+      <EntityTypeMapping TypeName="AcDBModel.Journey_makeupstyle">
+        <MappingFragment StoreEntitySet="Journey_makeupstyle">
+          <ScalarProperty Name="Journey_AncientcostumeID" ColumnName="Journey_AncientcostumeID" />
+          <ScalarProperty Name="Style3" ColumnName="Style3" />
+          <ScalarProperty Name="Style2" ColumnName="Style2" />
+          <ScalarProperty Name="Style1" ColumnName="Style1" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Journey_Ancientcostume">
+      <EntityTypeMapping TypeName="AcDBModel.Journey_Ancientcostume">
+        <MappingFragment StoreEntitySet="Journey_Ancientcostume">
+          <ScalarProperty Name="Costumestyle" ColumnName="Costumestyle" />
+          <ScalarProperty Name="Makeupstyle" ColumnName="Makeupstyle" />
+          <ScalarProperty Name="Hairstyle" ColumnName="Hairstyle" />
+          <ScalarProperty Name="JourneyID" ColumnName="JourneyID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Journey_hairstyle">
+      <EntityTypeMapping TypeName="AcDBModel.Journey_hairstyle">
+        <MappingFragment StoreEntitySet="Journey_hairstyle">
+          <ScalarProperty Name="Style3" ColumnName="Style3" />
+          <ScalarProperty Name="Style2" ColumnName="Style2" />
+          <ScalarProperty Name="Style1" ColumnName="Style1" />
+          <ScalarProperty Name="Journey_AncientcostumeID" ColumnName="Journey_AncientcostumeID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Favorites">
+      <EntityTypeMapping TypeName="AcDBModel.Favorite">
+        <MappingFragment StoreEntitySet="Favorite">
+          <ScalarProperty Name="JourneyId" ColumnName="JourneyId" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Journey_Stays">
+      <EntityTypeMapping TypeName="AcDBModel.Journey_Stays">
+        <MappingFragment StoreEntitySet="Journey_Stays">
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Max_of_exlra_prople" ColumnName="Max_of_exlra_prople" />
+          <ScalarProperty Name="Num_of_bed" ColumnName="Num_of_bed" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="StayInfo" ColumnName="StayInfo" />
+          <ScalarProperty Name="StayImage" ColumnName="StayImage" />
+          <ScalarProperty Name="StayName" ColumnName="StayName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Journeys">
+      <EntityTypeMapping TypeName="AcDBModel.Journey">
+        <MappingFragment StoreEntitySet="Journey">
+          <ScalarProperty Name="Food" ColumnName="Food" />
+          <ScalarProperty Name="CarFare" ColumnName="CarFare" />
+          <ScalarProperty Name="Activity" ColumnName="Activity" />
+          <ScalarProperty Name="StayExpenses" ColumnName="StayExpenses" />
+          <ScalarProperty Name="Transportation" ColumnName="Transportation" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="MakeUpExpenses" ColumnName="MakeUpExpenses" />
+          <ScalarProperty Name="TraveItems" ColumnName="TraveItems" />
+          <ScalarProperty Name="Journey_StaysId" ColumnName="Journey_StaysId" />
+          <ScalarProperty Name="Sights_text" ColumnName="Sights_text" />
+          <ScalarProperty Name="Sights_title" ColumnName="Sights_title" />
+          <ScalarProperty Name="Sights_img3" ColumnName="Sights_img3" />
+          <ScalarProperty Name="Sights_img2" ColumnName="Sights_img2" />
+          <ScalarProperty Name="Sights_img1" ColumnName="Sights_img1" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="EditImage" ColumnName="EditImage" />
+          <ScalarProperty Name="DailyItinerary" ColumnName="DailyItinerary" />
+          <ScalarProperty Name="AssemblyPlace" ColumnName="AssemblyPlace" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="ExpenseItems" ColumnName="ExpenseItems" />
+          <ScalarProperty Name="Stay_text" ColumnName="Stay_text" />
+          <ScalarProperty Name="Stay_title" ColumnName="Stay_title" />
+          <ScalarProperty Name="Stay_img3" ColumnName="Stay_img3" />
+          <ScalarProperty Name="Stay_img2" ColumnName="Stay_img2" />
+          <ScalarProperty Name="Stay_img1" ColumnName="Stay_img1" />
+          <ScalarProperty Name="Stay" ColumnName="Stay" />
+          <ScalarProperty Name="Sights" ColumnName="Sights" />
+          <ScalarProperty Name="JourneyShort" ColumnName="JourneyShort" />
+          <ScalarProperty Name="JourneyContent" ColumnName="JourneyContent" />
+          <ScalarProperty Name="JourneyDate" ColumnName="JourneyDate" />
+          <ScalarProperty Name="JourneyName" ColumnName="JourneyName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="AcDBModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="RequiredDate" ColumnName="RequiredDate" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="hair" ColumnName="hair" />
+          <ScalarProperty Name="makeup" ColumnName="makeup" />
+          <ScalarProperty Name="custom" ColumnName="custom" />
+          <ScalarProperty Name="DailyItinerary" ColumnName="DailyItinerary" />
+          <ScalarProperty Name="AssemblyPlace" ColumnName="AssemblyPlace" />
+          <ScalarProperty Name="Food" ColumnName="Food" />
+          <ScalarProperty Name="Activity" ColumnName="Activity" />
+          <ScalarProperty Name="StayExpenses" ColumnName="StayExpenses" />
+          <ScalarProperty Name="CarFare" ColumnName="CarFare" />
+          <ScalarProperty Name="Transportation" ColumnName="Transportation" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="MakeUpExpenses" ColumnName="MakeUpExpenses" />
+          <ScalarProperty Name="ExpenseItems" ColumnName="ExpenseItems" />
+          <ScalarProperty Name="Stay" ColumnName="Stay" />
+          <ScalarProperty Name="Sights" ColumnName="Sights" />
+          <ScalarProperty Name="JourneyContent" ColumnName="JourneyContent" />
+          <ScalarProperty Name="JourneyName" ColumnName="JourneyName" />
+          <ScalarProperty Name="JourneyId" ColumnName="JourneyId" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Selectchild" ColumnName="Selectchild" />
+          <ScalarProperty Name="Selectfood" ColumnName="Selectfood" />
+          <ScalarProperty Name="SelectPerson" ColumnName="SelectPerson" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="TwId" ColumnName="TwId" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="E_mail" ColumnName="E-mail" />
+          <ScalarProperty Name="Customersname" ColumnName="Customersname" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

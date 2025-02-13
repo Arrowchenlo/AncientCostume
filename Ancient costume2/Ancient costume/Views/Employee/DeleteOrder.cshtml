@@ -1,0 +1,279 @@
+﻿@model Ancient_costume.Models.Order
+
+@{
+    ViewBag.Title = "DeleteOrder";
+}
+
+<div class="container">
+    <h2>刪除訂單</h2>
+
+    <h3>確定刪除訂單?</h3>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Customersname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customersname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.E_mail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.E_mail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TwId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TwId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SelectPerson)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SelectPerson)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Selectfood)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Selectfood)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Selectchild)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Selectchild)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JourneyId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JourneyId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JourneyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JourneyName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JourneyContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JourneyContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sights)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sights)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Stay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpenseItems)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpenseItems)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MakeUpExpenses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MakeUpExpenses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Photo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Transportation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Transportation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CarFare)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CarFare)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StayExpenses)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StayExpenses)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Food)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Food)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AssemblyPlace)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AssemblyPlace)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DailyItinerary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DailyItinerary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.custom)
+            <br />
+            <img width="200" src="@Url.Content("~/source/costume/" + Model.custom + ".jpg")">
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.custom)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.makeup)
+            <br />
+            <img width="200" src="@Url.Content("~/source/makeup/" + Model.makeup + ".jpg")">
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.makeup)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.hair)
+            <br />
+            <img width="200" src="@Url.Content("~/source/hair/" + Model.hair + ".jpg")">
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.hair)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequiredDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequiredDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Member.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Member.UserName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
